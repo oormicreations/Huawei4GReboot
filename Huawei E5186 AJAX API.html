@@ -1,0 +1,1889 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Huawei E5186 AJAX API  - Hacker's ramblings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Powered-By" content="Serendipity v.2.0.2" />
+    <link rel="stylesheet" type="text/css" href="https://blog.hqcodeshop.fi/serendipity.css?v=" />
+    <link rel="alternate"  type="application/rss+xml" title="Hacker's ramblings RSS feed" href="https://blog.hqcodeshop.fi/feeds/index.rss2" />
+    <link rel="alternate"  type="application/x.atom+xml"  title="Hacker's ramblings Atom feed"  href="https://blog.hqcodeshop.fi/feeds/atom.xml" />
+    <link rel="pingback" href="https://blog.hqcodeshop.fi/comment.php?type=pingback&amp;entry_id=259" />
+    <link rel="shortcut icon" href="https://blog.hqcodeshop.fi/HackerInside - 32x icon.ico" />
+
+    <script src="/templates/jquery.js"></script>
+    <script>jQuery.noConflict();</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38609071-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> <link rel="start" href="https://blog.hqcodeshop.fi/" title="Hacker's ramblings" />
+<link rel="up" href="https://blog.hqcodeshop.fi/" title="Hacker's ramblings" />
+<link rel="prev" href="https://blog.hqcodeshop.fi/archives/258-Huawei-E5186-prototype-reviewed.html" title="Huawei E5186 (prototype) reviewed" />
+<link rel="next" href="https://blog.hqcodeshop.fi/archives/260-Huawei-B593-s-22-RS-232-pins.html" title="Huawei B593 s-22 RS-232 pins" />
+<link rel="canonical" href="https://blog.hqcodeshop.fi/archives/259-Huawei-E5186-AJAX-API.html" />
+
+</head>
+
+<body>
+
+
+
+
+
+<div class="lc">  
+<div class="rc">
+<div class="tc">
+<div class="bc">
+<div class="bl">
+<div class="br">
+<div class="tl">
+<div class="tr">
+  <div id="serendipity_banner">
+  <h1><a class="homelink1" href="https://blog.hqcodeshop.fi/">Huawei E5186 AJAX API</a></h1>
+    <h2><a class="homelink2" href="https://blog.hqcodeshop.fi/">Hacker's ramblings</a></h2>
+
+</div>
+<table id="mainpane">
+    <tr>
+		 			<td id="content" valign="top"><!-- CONTENT START -->
+
+	<div class="serendipity_content_message"></div>
+
+<!-- ENTRIES START -->
+    
+        <div class="serendipity_Entry_Date">
+
+        			        <h3 class="serendipity_title"><a href="/archives/259-Huawei-E5186-AJAX-API.html">Huawei E5186 AJAX API</a></h3>
+
+                <h4 class="serendipity_date">Monday, March 16. 2015</h3>
+        
+        <div class="serendipity_entry serendipity_entry_author_Jari-Turkia ">
+                        <span class="serendipity_entryIcon">
+                                                    </span>
+            
+            <div class="serendipity_entry_body">
+                <p>As I wrote in my <a href="/archives/258-Huawei-E5186-prototype-reviewed.html">E5186 review</a>, there is a very good API for accessing the box.</p>
+
+<p>All responses start with a <tt>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</tt>. API-calls have <tt>&lt;response&gt;</tt> as the root element, config-calls have <tt>&lt;config&gt;</tt> as the root element. Some of the API-calls can be set (POST) or get (GET). Config cannot be set (POST), only read (GET).</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<thead>
+		<tr>
+			<th scope="col" style="width:15%">URI</th>
+			<th scope="col" style="width:7%">
+			<p>GET /<br />
+			POST</p>
+			</th>
+			<th scope="col">Login<br />
+			only</th>
+			<th scope="col">Description</th>
+			<th scope="col">Sample</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="vertical-align:top">/config/global/config.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Config</td>
+			<td>
+			<p><tt>&lt;homepage/&gt;<br />
+			&lt;default_language&gt;de-de&lt;/default_language&gt;<br />
+			&lt;dialogdisapear&gt;3000&lt;/dialogdisapear&gt;<br />
+			&lt;tip_disapear&gt;3000&lt;/tip_disapear&gt;<br />
+			&lt;update_interval&gt;3000&lt;/update_interval&gt;<br />
+			&lt;ap_station_enabled&gt;0&lt;/ap_station_enabled&gt;<br />
+			&lt;title&gt;Mobile Broadband&lt;/title&gt;<br />
+			&lt;login&gt;1&lt;/login&gt;<br />
+			&lt;autoapn_enabled&gt;0&lt;/autoapn_enabled&gt;<br />
+			&lt;footer&gt;1&lt;/footer&gt;<br />
+			&lt;battery_enabled&gt;0&lt;/battery_enabled&gt;<br />
+			&lt;continue_button&gt;1&lt;/continue_button&gt;<br />
+			&lt;special_redirect&gt;1&lt;/special_redirect&gt;<br />
+			&lt;menu_number&gt;5&lt;/menu_number&gt;<br />
+			&lt;roam_warn_enabled&gt;1&lt;/roam_warn_enabled&gt;<br />
+			&lt;hotlinks&gt;<br />
+			&lt;enable&gt;1&lt;/enable&gt;<br />
+			&lt;items&gt;<br />
+			&lt;item/&gt;<br />
+			&lt;item/&gt;<br />
+			&lt;item/&gt;<br />
+			&lt;/items&gt;<br />
+			&lt;/hotlinks&gt;<br />
+			&lt;appmanagements&gt;<br />
+			&lt;enabled&gt;0&lt;/enabled&gt;<br />
+			&lt;mobileWifi&gt;<br />
+			&lt;android&gt;http:&amp;#x2F;&amp;#x2F;consumer.huawei.com</tt><br />
+			<tt>&amp;#x2F;minisite&amp;#x2F;mobilewifiapp<br />
+			&amp;#x2F;apk&amp;#x2F;HuaweiMobileWiFi.apk<br />
+			&lt;/android&gt;<br />
+			&lt;ios&gt;https:&amp;#x2F;&amp;#x2F;itunes.apple.com<br />
+			&amp;#x2F;app&amp;#x2F;huawei-mobile-wifi<br />
+			&amp;#x2F;id546979875?ls=1&amp;amp;mt=8&lt;/ios&gt;<br />
+			&lt;windows/&gt;<br />
+			&lt;/mobileWifi&gt;<br />
+			&lt;mobileDoctor&gt;<br />
+			&lt;windowsOS&gt;http:&amp;#x2F;&amp;#x2F;consumer.huawei.com<br />
+			&amp;#x2F;en&amp;#x2F;support&amp;#x2F;downloads<br />
+			&amp;#x2F;detail&amp;#x2F;index.htm?id=16921<br />
+			&lt;/windowsOS&gt;<br />
+			&lt;macOS/&gt;<br />
+			&lt;linuxOS/&gt;<br />
+			&lt;/mobileDoctor&gt;<br />
+			&lt;/appmanagements&gt;<br />
+			&lt;commend_enable&gt;0&lt;/commend_enable&gt;<br />
+			&lt;connection&gt;<br />
+			&lt;enable&gt;1&lt;/enable&gt;<br />
+			&lt;connectionstatus&gt;1&lt;/connectionstatus&gt;<br />
+			&lt;/connection&gt;<br />
+			&lt;position_info&gt;<br />
+			&lt;offset&gt;0&lt;/offset&gt;<br />
+			&lt;offset_ie6&gt;0&lt;/offset_ie6&gt;<br />
+			&lt;/position_info&gt;<br />
+			&lt;menu&gt;<br />
+			&lt;home&gt;home&lt;/home&gt;<br />
+			&lt;statistic&gt;statistic&lt;/statistic&gt;<br />
+			&lt;commend&gt;commend&lt;/commend&gt;<br />
+			&lt;sms&gt;<br />
+			&lt;inbox&gt;smsinbox&lt;/inbox&gt;<br />
+			&lt;sent&gt;smssent&lt;/sent&gt;<br />
+			&lt;drafts&gt;smsdrafts&lt;/drafts&gt;<br />
+			&lt;sms_center_number&gt;messagesettings&lt;/sms_center_number&gt;<br />
+			&lt;/sms&gt;<br />
+			&lt;update&gt;<br />
+			&lt;update_online&gt;update&lt;/update_online&gt;<br />
+			&lt;update_local&gt;update_local&lt;/update_local&gt;<br />
+			&lt;/update&gt;<br />
+			&lt;ussd&gt;<br />
+			&lt;prepaid&gt;<br />
+			&lt;pre_service_title&gt;activate_internet_service<br />
+			&lt;/pre_service_title&gt;<br />
+			&lt;pre_fun_balanceInquiry&gt;balanceInquiry<br />
+			&lt;/pre_fun_balanceInquiry&gt;<br />
+			&lt;pre_fun_charge&gt;charge&lt;/pre_fun_charge&gt;<br />
+			&lt;pre_fun_general&gt;general&lt;/pre_fun_general&gt;<br />
+			&lt;/prepaid&gt;<br />
+			&lt;postpaid&gt;<br />
+			&lt;post_service_title&gt;activate_internet_service<br />
+			&lt;/post_service_title&gt;<br />
+			&lt;post_fun_balanceInquiry&gt;balanceInquiry<br />
+			&lt;/post_fun_balanceInquiry&gt;<br />
+			&lt;post_fun_charge&gt;charge&lt;/post_fun_charge&gt;<br />
+			&lt;post_fun_general&gt;general&lt;/post_fun_general&gt;<br />
+			&lt;/postpaid&gt;<br />
+			&lt;/ussd&gt;<br />
+			&lt;settings&gt;<br />
+			&lt;quick_setup&gt;quicksetup&lt;/quick_setup&gt;<br />
+			&lt;dialup&gt;<br />
+			&lt;mobileconnection&gt;mobileconnection&lt;/mobileconnection&gt;<br />
+			&lt;profilesmgr&gt;profilesmgr&lt;/profilesmgr&gt;<br />
+			&lt;mobilenetworksettings&gt;mobilenetworksettings<br />
+			&lt;/mobilenetworksettings&gt;<br />
+			&lt;/dialup&gt;<br />
+			&lt;internet&gt;<br />
+			&lt;wifinetworks&gt;wifinetworks&lt;/wifinetworks&gt;<br />
+			&lt;wifipriority&gt;wifipriority&lt;/wifipriority&gt;<br />
+			&lt;stationwps&gt;stationwps&lt;/stationwps&gt;<br />
+			&lt;/internet&gt;<br />
+			&lt;wlan&gt;<br />
+			&lt;wlanbasicsettings&gt;wlanbasicsettings<br />
+			&lt;/wlanbasicsettings&gt;<br />
+			&lt;wlanadvanced&gt;wlanadvanced&lt;/wlanadvanced&gt;<br />
+			&lt;wlanmacfilter&gt;wlanmacfilter&lt;/wlanmacfilter&gt;<br />
+			&lt;wps&gt;wps&lt;/wps&gt;<br />
+			&lt;dhcp&gt;dhcp&lt;/dhcp&gt;<br />
+			&lt;/wlan&gt;<br />
+			&lt;voip&gt;<br />
+			&lt;serverbasic&gt;serverbasic&lt;/serverbasic&gt;<br />
+			&lt;voipinformation&gt;voipinformation&lt;/voipinformation&gt;<br />
+			&lt;sipbasic&gt;sipbasic&lt;/sipbasic&gt;<br />
+			&lt;speeddial&gt;speeddial&lt;/speeddial&gt;<br />
+			&lt;sipadvance&gt;sipadvance&lt;/sipadvance&gt;<br />
+			&lt;voiceadvanced&gt;voiceadvanced&lt;/voiceadvanced&gt;<br />
+			&lt;sipvoicecodec&gt;sipvoicecodec&lt;/sipvoicecodec&gt;<br />
+			&lt;/voip&gt;<br />
+			&lt;security&gt;<br />
+			&lt;pincodemanagement&gt;pincodemanagement<br />
+			&lt;/pincodemanagement&gt;<br />
+			&lt;firewallswitch&gt;firewallswitch&lt;/firewallswitch&gt;<br />
+			&lt;macfilter&gt;macfilter&lt;/macfilter&gt;<br />
+			&lt;lanipfilter&gt;lanipfilter&lt;/lanipfilter&gt;<br />
+			&lt;virtualserver&gt;virtualserver&lt;/virtualserver&gt;<br />
+			&lt;dmzsettings&gt;dmzsettings&lt;/dmzsettings&gt;<br />
+			&lt;nat&gt;nat&lt;/nat&gt;<br />
+			&lt;ddns&gt;ddns&lt;/ddns&gt;<br />
+			&lt;bridgemode&gt;bridgemode&lt;/bridgemode&gt;<br />
+			&lt;urlfilter&gt;urlfilter&lt;/urlfilter&gt;<br />
+			&lt;/security&gt;<br />
+			&lt;cbssettings&gt;cbssettings&lt;/cbssettings&gt;<br />
+			&lt;system&gt;<br />
+			&lt;deviceinformation&gt;deviceinformation<br />
+			&lt;/deviceinformation&gt;<br />
+			&lt;modifypassword&gt;modifypassword&lt;/modifypassword&gt;<br />
+			&lt;diagnosis&gt;diagnosis&lt;/diagnosis&gt;<br />
+			&lt;restore&gt;restore&lt;/restore&gt;<br />
+			&lt;reboot&gt;reboot&lt;/reboot&gt;<br />
+			&lt;systemsettings&gt;systemsettings&lt;/systemsettings&gt;<br />
+			&lt;/system&gt;<br />
+			&lt;/settings&gt;<br />
+			&lt;/menu&gt;</tt></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/config/global/net-type.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Config ?</td>
+			<td><tt>&lt;networktypes&gt;&lt;index&gt;001&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;002&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;003&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;004&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;005&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;006&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;007&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;008&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;009&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;010&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;011&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;012&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;013&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;015&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;017&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;018&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;019&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;021&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;022&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;023&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;024&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;025&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;026&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;027&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;028&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;029&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;030&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;031&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;032&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;033&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;034&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;035&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;036&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;041&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;042&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;043&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;044&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;045&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;046&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;061&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;062&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;063&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;064&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;065&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;<br />
+			&lt;networktypes&gt;&lt;index&gt;101&lt;/index&gt;<br />
+			&lt;networktype&gt;&lt;/networktype&gt;&lt;/networktypes&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/config/pcassistant/config.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;!-- 特性开关(要增加这个开关，与其他模块统一) --&gt;<br />
+			&lt;enable&gt;0&lt;/enable&gt;</tt>
+			<p>&nbsp;</p>
+			<tt> </tt>
+
+			<p><tt>&lt;!-- PC助手页面链接地址 --&gt;<br />
+			&lt;winpath&gt;http://www.huaweidevice.com/resource<br />
+			/mini/201105202018/bolt-card/setup_win.exe&lt;/winpath&gt;<br />
+			&lt;macpath&gt;http://www.huaweidevice.com/resource<br />
+			/mini/201105202018/bolt-card/setup_mac.zip&lt;/macpath&gt;<br />
+			&lt;upgradepath&gt;http://support.microsoft.com/hotfix/KBHotfix.aspx?kbnum=945436kbln=zh-cn&lt;/upgradepath&gt;</tt></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/config/global/languagelist.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;languages&gt;<br />
+			&lt;!-- UI显示的语言列表 --&gt;<br />
+			&lt;language&gt;de-de&lt;/language&gt;<br />
+			&lt;language&gt;en-us&lt;/language&gt;<br />
+			&lt;/languages&gt;<br />
+			&lt;privacy_policy_url&gt;<br />
+			&lt;default_url&gt;http://consumer.huawei.com/en/privacy-policy/index.htm&lt;/default_url&gt;<br />
+			&lt;en_us&gt;http://consumer.huawei.com/en/privacy-policy/index.htm&lt;/en_us&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+			&lt;zh_cn&gt;http://consumer.huawei.com/cn/privacy-policy/index.htm&lt;/zh_cn&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+			&lt;/privacy_policy_url&gt;</tt>
+			<p>&nbsp;</p>
+			<tt> </tt>
+
+			<p><tt>&lt;usermanual_language&gt;<br />
+			&lt;default_language&gt;de-de&lt;/default_language&gt;<br />
+			&lt;support_language&gt;<br />
+			&lt;language&gt;en-us&lt;/language&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+			&lt;language&gt;de-de&lt;/language&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+			&lt;/support_language&gt;<br />
+			&lt;/usermanual_language&gt;</tt></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/config/deviceinformation/config.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;devicename&gt;1&lt;/devicename&gt;<br />
+			&lt;serialnumber&gt;0&lt;/serialnumber&gt;<br />
+			&lt;imei&gt;1&lt;/imei&gt;<br />
+			&lt;imsi&gt;1&lt;/imsi&gt;<br />
+			&lt;iccid&gt;0&lt;/iccid&gt;<br />
+			&lt;msisdn&gt;1&lt;/msisdn&gt;<br />
+			&lt;hardwareversion&gt;1&lt;/hardwareversion&gt;<br />
+			&lt;softwareversion&gt;1&lt;/softwareversion&gt;<br />
+			&lt;webuiversion&gt;1&lt;/webuiversion&gt;<br />
+			&lt;macaddress1&gt;1&lt;/macaddress1&gt;<br />
+			&lt;macaddress2&gt;0&lt;/macaddress2&gt;<br />
+			&lt;productfamily&gt;0&lt;/productfamily&gt;<br />
+			&lt;classify&gt;0&lt;/classify&gt;<br />
+			&lt;wanipaddress&gt;1&lt;/wanipaddress&gt;<br />
+			&lt;wanipv6address&gt;0&lt;/wanipv6address&gt;<br />
+			&lt;esn&gt;0&lt;/esn&gt;<br />
+			&lt;meid&gt;0&lt;/meid&gt;<br />
+			&lt;pci&gt;0&lt;/pci&gt;<br />
+			&lt;sc&gt;0&lt;/sc&gt;<br />
+			&lt;cell_id&gt;0&lt;/cell_id&gt;<br />
+			&lt;rsrq&gt;0&lt;/rsrq&gt;<br />
+			&lt;rsrp&gt;0&lt;/rsrp&gt;<br />
+			&lt;rssi&gt;0&lt;/rssi&gt;<br />
+			&lt;sinr&gt;0&lt;/sinr&gt;<br />
+			&lt;rscp&gt;0&lt;/rscp&gt;<br />
+			&lt;ecio&gt;0&lt;/ecio&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/config/webuicfg/config.xml</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;lanipfilter&gt;<br />
+			&lt;wan&gt;1&lt;/wan&gt;<br />
+			&lt;number&gt;16&lt;/number&gt;<br />
+			&lt;lan_enable&gt;1&lt;/lan_enable&gt;<br />
+			&lt;protocol_imcp&gt;1&lt;/protocol_imcp&gt;<br />
+			&lt;/lanipfilter&gt;<br />
+			&lt;specialapplication&gt;<br />
+			&lt;number&gt;16&lt;/number&gt;<br />
+			&lt;/specialapplication&gt;<br />
+			&lt;virtualserver&gt;<br />
+			&lt;number&gt;16&lt;/number&gt;<br />
+			&lt;/virtualserver&gt;<br />
+			&lt;firewallwanportpingswitch_enable&gt;1<br />
+			&lt;/firewallwanportpingswitch_enable&gt;<br />
+			&lt;urlfilter&gt;&lt;number&gt;16&lt;/number&gt;&lt;/urlfilter&gt;<br />
+			&lt;dialog_new_version&gt;1&lt;/dialog_new_version&gt; &nbsp;<br />
+			&lt;install_processbar_enable&gt;1<br />
+			&lt;/install_processbar_enable&gt;<br />
+			&lt;install_processbar_speed&gt;1<br />
+			&lt;/install_processbar_speed&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/cradle/status-info</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;cradlestatus&gt;0&lt;/cradlestatus&gt;<br />
+			&lt;connectstatus&gt;902&lt;/connectstatus&gt;<br />
+			&lt;connectionmode&gt;5&lt;/connectionmode&gt;<br />
+			&lt;currenttime&gt;0&lt;/currenttime&gt;<br />
+			&lt;macaddress&gt;38:F8:89:38:F8:89&lt;/macaddress&gt;<br />
+			&lt;ipaddress&gt;&lt;/ipaddress&gt;<br />
+			&lt;netmask&gt;&lt;/netmask&gt;<br />
+			&lt;gateway&gt;&lt;/gateway&gt;<br />
+			&lt;primarydns&gt;&lt;/primarydns&gt;<br />
+			&lt;secondarydns&gt;&lt;/secondarydns&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/autorun-version</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Radio hardware version?</td>
+			<td><tt>&lt;Version&gt;22.001.07.00.03&lt;/Version&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/basic_information</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>LTE, customer premises equipment</td>
+			<td><tt>&lt;productfamily&gt;LTE&lt;/productfamily&gt;<br />
+			&lt;classify&gt;cpe&lt;/classify&gt;<br />
+			&lt;multimode&gt;0&lt;/multimode&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/control</td>
+			<td>POST</td>
+			<td>&nbsp;</td>
+			<td>Reboot the device</td>
+			<td><tt>&lt;Control&gt;1&lt;/Control&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/device-feature-switch</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;coulometer_enabled&gt;0&lt;/coulometer_enabled&gt;<br />
+			&lt;copyright_enabled&gt;1&lt;/copyright_enabled&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/information</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Android-side version information</td>
+			<td><tt>&lt;DeviceName&gt;E5186s-22a&lt;/DeviceName&gt;<br />
+			&lt;SerialNumber&gt;W&lt;/SerialNumber&gt;<br />
+			&lt;Imei&gt;8643910&lt;/Imei&gt;<br />
+			&lt;Imsi&gt;2&lt;/Imsi&gt;<br />
+			&lt;Iccid&gt;8&lt;/Iccid&gt;<br />
+			&lt;Msisdn&gt;041&lt;/Msisdn&gt;<br />
+			&lt;HardwareVersion&gt;CL1E5175HM&lt;/HardwareVersion&gt;<br />
+			&lt;SoftwareVersion&gt;21.298.00.00.55&lt;/SoftwareVersion&gt;<br />
+			&lt;WebUIVersion&gt;16.100.02.00.03&lt;/WebUIVersion&gt;<br />
+			&lt;MacAddress1&gt;38:F8:89:38:F8:89&lt;/MacAddress1&gt;<br />
+			&lt;MacAddress2&gt;&lt;/MacAddress2&gt;<br />
+			&lt;ProductFamily&gt;LTE&lt;/ProductFamily&gt;<br />
+			&lt;Classify&gt;cpe&lt;/Classify&gt;<br />
+			&lt;supportmode&gt;&lt;/supportmode&gt;<br />
+			&lt;workmode&gt;LTE&lt;/workmode&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/signal</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Cell ID and signal quality parameters: RSRQ, RSRP, RSSI, SINR, RSCP, Ec/Io</td>
+			<td><tt>&lt;pci&gt;82&lt;/pci&gt;<br />
+			&lt;sc&gt;&lt;/sc&gt;<br />
+			&lt;cell_id&gt;551&lt;/cell_id&gt;<br />
+			&lt;rsrq&gt;-6dB&lt;/rsrq&gt;<br />
+			&lt;rsrp&gt;-102dBm&lt;/rsrp&gt;<br />
+			&lt;rssi&gt;-89dBm&lt;/rssi&gt;<br />
+			&lt;sinr&gt;3dB&lt;/sinr&gt;<br />
+			&lt;rscp&gt;&lt;/rscp&gt;<br />
+			&lt;ecio&gt;&lt;/ecio&gt;<br />
+			&lt;mode&gt;7&lt;/mode&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/device/usb-tethering-switch</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/dialup/connection</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;RoamAutoConnectEnable&gt;0&lt;/RoamAutoConnectEnable&gt;<br />
+			&lt;MaxIdelTime&gt;600&lt;/MaxIdelTime&gt;<br />
+			&lt;ConnectMode&gt;0&lt;/ConnectMode&gt;<br />
+			&lt;MTU&gt;1500&lt;/MTU&gt;<br />
+			&lt;auto_dial_switch&gt;1&lt;/auto_dial_switch&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/dialup/dial</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/dialup/mobile-dataswitch</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;dataswitch&gt;1&lt;/dataswitch&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/global/module-switch</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Features of the router</td>
+			<td><tt>&lt;ussd_enabled&gt;0&lt;/ussd_enabled&gt;<br />
+			&lt;bbou_enabled&gt;1&lt;/bbou_enabled&gt;<br />
+			&lt;sms_enabled&gt;1&lt;/sms_enabled&gt;<br />
+			&lt;sdcard_enabled&gt;0&lt;/sdcard_enabled&gt;<br />
+			&lt;wifi_enabled&gt;1&lt;/wifi_enabled&gt;<br />
+			&lt;statistic_enabled&gt;1&lt;/statistic_enabled&gt;<br />
+			&lt;help_enabled&gt;1&lt;/help_enabled&gt;<br />
+			&lt;stk_enabled&gt;0&lt;/stk_enabled&gt;<br />
+			&lt;pb_enabled&gt;0&lt;/pb_enabled&gt;<br />
+			&lt;dlna_enabled&gt;0&lt;/dlna_enabled&gt;<br />
+			&lt;ota_enabled&gt;0&lt;/ota_enabled&gt;<br />
+			&lt;wifioffload_enabled&gt;0&lt;/wifioffload_enabled&gt;<br />
+			&lt;cradle_enabled&gt;1&lt;/cradle_enabled&gt;<br />
+			&lt;multssid_enable&gt;1&lt;/multssid_enable&gt;<br />
+			&lt;ipv6_enabled&gt;0&lt;/ipv6_enabled&gt;<br />
+			&lt;monthly_volume_enabled&gt;1&lt;/monthly_volume_enabled&gt;<br />
+			&lt;powersave_enabled&gt;0&lt;/powersave_enabled&gt;<br />
+			&lt;sntp_enabled&gt;0&lt;/sntp_enabled&gt;<br />
+			&lt;dataswitch_enabled&gt;1&lt;/dataswitch_enabled&gt;<br />
+			&lt;ddns_enabled&gt;0&lt;/ddns_enabled&gt;<br />
+			&lt;sambashare_enabled&gt;0&lt;/sambashare_enabled&gt;<br />
+			&lt;poweroff_enabled&gt;0&lt;/poweroff_enabled&gt;<br />
+			&lt;fw_macfilter_enabled&gt;1&lt;/fw_macfilter_enabled&gt;<br />
+			&lt;ecomode_enabled&gt;1&lt;/ecomode_enabled&gt;<br />
+			&lt;zonetime_enabled&gt;0&lt;/zonetime_enabled&gt;<br />
+			&lt;diagnosis_enabled&gt;1&lt;/diagnosis_enabled&gt;<br />
+			&lt;localupdate_enabled&gt;1&lt;/localupdate_enabled&gt;<br />
+			&lt;cbs_enabled&gt;0&lt;/cbs_enabled&gt;<br />
+			&lt;qrcode_enabled&gt;0&lt;/qrcode_enabled&gt;<br />
+			&lt;charger_enbaled&gt;0&lt;/charger_enbaled&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/host/info</td>
+			<td>POST</td>
+			<td>&nbsp;</td>
+			<td>Web-admin client information for the router</td>
+			<td><tt>&lt;Time&gt;20150315223426&lt;/Time&gt;<br />
+			&lt;Timezone&gt;GMT+02:00&lt;/Timezone&gt;<br />
+			&lt;Platform&gt;Win32&lt;/Platform&gt;<br />
+			&lt;PlatformVer&gt;Mozilla/5.0 (Windows NT 6.1; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0&lt;/PlatformVer&gt;<br />
+			&lt;Navigator&gt;5.0 (Windows)&lt;/Navigator&gt;<br />
+			&lt;NavigatorVer&gt;Mozilla/5.0 (Windows NT 6.1; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0&lt;/NavigatorVer&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/language/current-language</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Selected language. There is a list of supported languages at /config/global/languagelist.xml</td>
+			<td><tt>&lt;CurrentLanguage&gt;en-us&lt;/CurrentLanguage&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/monitoring/check-notifications</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;UnreadMessage&gt;0&lt;/UnreadMessage&gt;<br />
+			&lt;SmsStorageFull&gt;0&lt;/SmsStorageFull&gt;<br />
+			&lt;OnlineUpdateStatus&gt;14&lt;/OnlineUpdateStatus&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/monitoring/converged-status</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>SIM info</td>
+			<td><tt>&lt;SimState&gt;257&lt;/SimState&gt;<br />
+			&lt;SimLockEnable&gt;0&lt;/SimLockEnable&gt;<br />
+			&lt;CurrentLanguage&gt;en-us&lt;/CurrentLanguage&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/monitoring/status</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;ConnectionStatus&gt;901&lt;/ConnectionStatus&gt;<br />
+			&lt;WifiConnectionStatus&gt;&lt;/WifiConnectionStatus&gt;<br />
+			&lt;SignalStrength&gt;&lt;/SignalStrength&gt;<br />
+			&lt;SignalIcon&gt;3&lt;/SignalIcon&gt;<br />
+			&lt;CurrentNetworkType&gt;101&lt;/CurrentNetworkType&gt;<br />
+			&lt;CurrentServiceDomain&gt;3&lt;/CurrentServiceDomain&gt;<br />
+			&lt;RoamingStatus&gt;0&lt;/RoamingStatus&gt;<br />
+			&lt;BatteryStatus&gt;&lt;/BatteryStatus&gt;<br />
+			&lt;BatteryLevel&gt;&lt;/BatteryLevel&gt;<br />
+			&lt;BatteryPercent&gt;&lt;/BatteryPercent&gt;<br />
+			&lt;simlockStatus&gt;0&lt;/simlockStatus&gt;<br />
+			&lt;WanIPAddress&gt;37.33.207.127&lt;/WanIPAddress&gt;<br />
+			&lt;WanIPv6Address&gt;&lt;/WanIPv6Address&gt;<br />
+			&lt;PrimaryDns&gt;62.241.198.245&lt;/PrimaryDns&gt;<br />
+			&lt;SecondaryDns&gt;62.241.198.246&lt;/SecondaryDns&gt;<br />
+			&lt;PrimaryIPv6Dns&gt;&lt;/PrimaryIPv6Dns&gt;<br />
+			&lt;SecondaryIPv6Dns&gt;&lt;/SecondaryIPv6Dns&gt;<br />
+			&lt;CurrentWifiUser&gt;0&lt;/CurrentWifiUser&gt;<br />
+			&lt;TotalWifiUser&gt;64&lt;/TotalWifiUser&gt;<br />
+			&lt;currenttotalwifiuser&gt;64&lt;/currenttotalwifiuser&gt;<br />
+			&lt;ServiceStatus&gt;2&lt;/ServiceStatus&gt;<br />
+			&lt;SimStatus&gt;1&lt;/SimStatus&gt;<br />
+			&lt;WifiStatus&gt;0&lt;/WifiStatus&gt;<br />
+			&lt;CurrentNetworkTypeEx&gt;101&lt;/CurrentNetworkTypeEx&gt;<br />
+			&lt;maxsignal&gt;5&lt;/maxsignal&gt;<br />
+			&lt;wifiindooronly&gt;0&lt;/wifiindooronly&gt;<br />
+			&lt;wififrequence&gt;0&lt;/wififrequence&gt;<br />
+			&lt;classify&gt;cpe&lt;/classify&gt;<br />
+			&lt;flymode&gt;0&lt;/flymode&gt;<br />
+			&lt;cellroam&gt;1&lt;/cellroam&gt;<br />
+			&lt;ltecastatus&gt;0&lt;/ltecastatus&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/monitoring/traffic-statistics</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Traffic transferred</td>
+			<td><tt>&lt;CurrentConnectTime&gt;243360&lt;/CurrentConnectTime&gt;<br />
+			&lt;CurrentUpload&gt;244020&lt;/CurrentUpload&gt;<br />
+			&lt;CurrentDownload&gt;1135754&lt;/CurrentDownload&gt;<br />
+			&lt;CurrentDownloadRate&gt;0&lt;/CurrentDownloadRate&gt;<br />
+			&lt;CurrentUploadRate&gt;0&lt;/CurrentUploadRate&gt;<br />
+			&lt;TotalUpload&gt;90688300183&lt;/TotalUpload&gt;<br />
+			&lt;TotalDownload&gt;250205129647&lt;/TotalDownload&gt;<br />
+			&lt;TotalConnectTime&gt;10613008&lt;/TotalConnectTime&gt;<br />
+			&lt;showtraffic&gt;1&lt;/showtraffic&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/net/current-plmn</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Public Land Mobile Network information</td>
+			<td><tt>&lt;State&gt;0&lt;/State&gt;<br />
+			&lt;FullName&gt;DNA&lt;/FullName&gt;<br />
+			&lt;ShortName&gt;DNA&lt;/ShortName&gt;<br />
+			&lt;Numeric&gt;24412&lt;/Numeric&gt;<br />
+			&lt;Rat&gt;7&lt;/Rat&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/online-update/upgrade-messagebox</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;messagebox&gt;1&lt;/messagebox&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/pin/status</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>Extended SIM information</td>
+			<td><tt>&lt;SimState&gt;257&lt;/SimState&gt;<br />
+			&lt;PinOptState&gt;258&lt;/PinOptState&gt;<br />
+			&lt;SimPinTimes&gt;3&lt;/SimPinTimes&gt;<br />
+			&lt;SimPukTimes&gt;10&lt;/SimPukTimes&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/redirection/homepage</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;EnableRedirection&gt;0&lt;/EnableRedirection&gt;<br />
+			&lt;Homepage&gt;&lt;/Homepage&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/security/bridgemode</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>? Enable bridge-mode</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/security/upnp</td>
+			<td>GET, POST</td>
+			<td>&nbsp;</td>
+			<td>Query or set Universal Plug and Play setting</td>
+			<td><tt>&lt;UpnpStatus&gt;1&lt;/UpnpStatus&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/sms/get-cbsnewslist</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/sms/sms-list</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/user/login</td>
+			<td>POST</td>
+			<td>&nbsp;</td>
+			<td>Log in an admin-user</td>
+			<td><tt>&lt;Username&gt;admin&lt;/Username&gt;<br />
+			&lt;Password&gt;-password-hash-&lt;/Password&gt;<br />
+			&lt;password_type&gt;4&lt;/password_type&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/user/logout</td>
+			<td>POST</td>
+			<td>&nbsp;</td>
+			<td>Log out an already logged in user</td>
+			<td><tt>&lt;Logout&gt;1&lt;/Logout&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/user/remind</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;remindstate&gt;1&lt;/remindstate&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/user/session</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/user/state-login</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>
+			<p>State = -1 no logged in user<br />
+			Password type = 4 for SHA-256 hashed password with token</p>
+			</td>
+			<td><tt>&lt;State&gt;-1&lt;/State&gt;<br />
+			&lt;Username&gt;&lt;/Username&gt;<br />
+			&lt;password_type&gt;4&lt;/password_type&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/ussd/get</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/webserver/token</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>Get a new security token</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/basic-settings</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>WiFi setup information</td>
+			<td><tt>&lt;WifiSsid&gt;Huawei5186_2.4&lt;/WifiSsid&gt;<br />
+			&lt;WifiChannel&gt;9&lt;/WifiChannel&gt;<br />
+			&lt;WifiHide&gt;0&lt;/WifiHide&gt;<br />
+			&lt;WifiCountry&gt;ALL&lt;/WifiCountry&gt;<br />
+			&lt;WifiMode&gt;b&amp;#x2F;g&amp;#x2F;n&lt;/WifiMode&gt;<br />
+			&lt;WifiRate&gt;0&lt;/WifiRate&gt;<br />
+			&lt;WifiTxPwrPcnt&gt;100&lt;/WifiTxPwrPcnt&gt;<br />
+			&lt;WifiMaxAssoc&gt;32&lt;/WifiMaxAssoc&gt;<br />
+			&lt;WifiEnable&gt;1&lt;/WifiEnable&gt;<br />
+			&lt;WifiFrgThrshld&gt;2346&lt;/WifiFrgThrshld&gt;<br />
+			&lt;WifiRtsThrshld&gt;2347&lt;/WifiRtsThrshld&gt;<br />
+			&lt;WifiDtmIntvl&gt;1&lt;/WifiDtmIntvl&gt;<br />
+			&lt;WifiBcnIntvl&gt;100&lt;/WifiBcnIntvl&gt;<br />
+			&lt;WifiWme&gt;1&lt;/WifiWme&gt;<br />
+			&lt;WifiPamode&gt;0&lt;/WifiPamode&gt;<br />
+			&lt;WifiIsolate&gt;0&lt;/WifiIsolate&gt;<br />
+			&lt;WifiProtectionmode&gt;1&lt;/WifiProtectionmode&gt;<br />
+			&lt;Wifioffenable&gt;1&lt;/Wifioffenable&gt;<br />
+			&lt;Wifiofftime&gt;600&lt;/Wifiofftime&gt;<br />
+			&lt;wifibandwidth&gt;0&lt;/wifibandwidth&gt;<br />
+			&lt;wifiautocountryswitch&gt;0&lt;/wifiautocountryswitch&gt;<br />
+			&lt;WifiRestart&gt;0&lt;/WifiRestart&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/handover-setting</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/multi-security-settings</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/multi-switch-settings</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><tt>&lt;multissidstatus&gt;1&lt;/multissidstatus&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/station-information</td>
+			<td>?</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/wlan/wifi-feature-switch</td>
+			<td>GET</td>
+			<td>&nbsp;</td>
+			<td>WiFi features</td>
+			<td><tt>&lt;wifi5g_enabled&gt;1&lt;/wifi5g_enabled&gt;<br />
+			&lt;wifiautocountry_enabled&gt;0&lt;/wifiautocountry_enabled&gt;<br />
+			&lt;maxapnum&gt;2&lt;/maxapnum&gt;<br />
+			&lt;isdoublechip&gt;1&lt;/isdoublechip&gt;<br />
+			&lt;acmode_enable&gt;1&lt;/acmode_enable&gt;<br />
+			&lt;stawpsenabled&gt;0&lt;/stawpsenabled&gt;<br />
+			&lt;opennonewps_enable&gt;1&lt;/opennonewps_enable&gt;<br />
+			&lt;stafrequenceenable&gt;0&lt;/stafrequenceenable&gt;<br />
+			&lt;wifi24g_switch_enable&gt;1&lt;/wifi24g_switch_enable&gt;<br />
+			&lt;wifi_dfs_enable&gt;0&lt;/wifi_dfs_enable&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">/api/net/net-mode</td>
+			<td>GET, POST</td>
+			<td>&nbsp;</td>
+			<td>Mode lock (2G/3G/4G), frequency lock. Bitmask with Huawei values.</td>
+			<td><tt>&lt;NetworkMode&gt;03&lt;/NetworkMode&gt;<br />
+			&lt;NetworkBand&gt;3FFFFFFF&lt;/NetworkBand&gt;<br />
+			&lt;LTEBand&gt;800C5&lt;/LTEBand&gt;</tt></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>All of the API-calls require a valid session cookie set to respond. Some commands require a logged in user for access, some don't. I won't be able to maintain this list, as I don't own an E5186, but I'll update this if I find something interesting.</p>
+
+<p>Later I will publish a tool to allow full bi-directional access.</p>
+
+            </div>
+
+            
+            
+            <div class='serendipity_entryFooter'>
+                <!--Posted by-->by <a href="https://blog.hqcodeshop.fi/authors/1-Jari-Turkia">Jari Turkia</a>
+                                   in <a href="https://blog.hqcodeshop.fi/categories/11-Huawei">Huawei</a>                
+                                    at
+                 <a href="/archives/259-Huawei-E5186-AJAX-API.html">20:43</a>
+
+                                                            | <a href="/archives/259-Huawei-E5186-AJAX-API.html#comments">Comments (36)</a>
+                                    
+            
+                
+                | <a href="https://plus.google.com/110688515498064415263?rel=author" target="_blank">Google</a><!-- https://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986 -->
+                | <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://blog.hqcodeshop.fi/archives/259-Huawei-E5186-AJAX-API.html&title=Huawei E5186 AJAX API&source=Hacker%27s+ramblings+Blog
+" target="_blank">Share in LinkedIn</a>
+                
+            </div>
+        </div>
+        <!--
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+                 xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <rdf:Description
+                 rdf:about="https://blog.hqcodeshop.fi/feeds/ei_259.rdf"
+                 trackback:ping="https://blog.hqcodeshop.fi/comment.php?type=trackback&amp;entry_id=259"
+                 dc:title="Huawei E5186 AJAX API"
+                 dc:identifier="https://blog.hqcodeshop.fi/archives/259-Huawei-E5186-AJAX-API.html" />
+        </rdf:RDF>
+        -->
+        
+
+                    
+            
+            
+            
+            
+                    
+                    <div class="serendipity_comments serendipity_section_comments">
+                <br />
+                <a id="comments"></a>
+                <div class="serendipity_commentsTitle">Comments</div>
+                <div class="serendipity_center">Display comments as
+                                    (<a href="/index.php?url=archives/259-Huawei-E5186-AJAX-API.html&amp;serendipity[cview]=linear#comments">Linear</a> | Threaded)
+                                </div>
+                <br />
+                        <a id="c1440"></a>
+    <div id="serendipity_comment_1440" class="serendipity_comment serendipity_comment_author_Arnaud  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Interesting ! As i have a E5372, i'd like to get access to the source code of your tool (allowing bidirectional access)<div class="serendipity_commentcount">Comments (3)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1440">#1</a>
+            <span class="comment_source_author">
+                            Arnaud
+                        </span>
+                        on
+            <span class="comment_source_date">2015-04-16 10:45</span>
+
+                                </div>
+    </div>
+    <a id="c1450"></a>
+    <div id="serendipity_comment_1450" class="serendipity_comment serendipity_comment_author_Jari-Turkia   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Yes. I will release it momentarily.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1450">#1.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2015-04-22 16:56</span>
+
+                                </div>
+    </div>
+    <a id="c1490"></a>
+    <div id="serendipity_comment_1490" class="serendipity_comment serendipity_comment_author_rvl  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Thanks for the info. I have an E3231. Here is a script to login and reboot the device using the API. You will have to fix the indentation because of blog comment formatting.<br />
+<br />
+###########################<br />
+#!/usr/bin/env python<br />
+<br />
+from <u>_future_</u> import print_function<br />
+<br />
+import requests<br />
+import re<br />
+import hashlib<br />
+import base64<br />
+<br />
+<br />
+def login(baseurl, username, password):<br />
+    s = requests.Session()<br />
+    r = s.get(baseurl + &quot;html/index.html&quot;)<br />
+    csrf_tokens = grep_csrf(r.text)<br />
+<br />
+    s.headers.update({<br />
+        '__RequestVerificationToken': csrf_tokens[0]<br />
+    })<br />
+<br />
+    # test token on statistics api<br />
+    # r = s.get(baseurl + &quot;api/monitoring/statistic-server&quot;)<br />
+<br />
+    data = login_data(username, password, csrf_tokens[0])<br />
+    r = s.post(baseurl + &quot;api/user/login&quot;, data=data)<br />
+<br />
+    s.headers.update({<br />
+        '__RequestVerificationToken': r.headers[&quot;__RequestVerificationTokenone&quot;]<br />
+    })<br />
+<br />
+    return s<br />
+<br />
+<br />
+def reboot(baseurl, session):<br />
+    s.post(baseurl + &quot;api/device/control&quot;, data='1')<br />
+<br />
+<br />
+def grep_csrf(html):<br />
+    pat = re.compile(r&quot;.*meta name=\&quot;csrf_token\&quot; content=\&quot;(.*)\&quot;&quot;, re.I)<br />
+    matches = (pat.match(line) for line in html.splitlines())<br />
+    return [m.group(1) for m in matches if m]<br />
+<br />
+<br />
+def login_data(username, password, csrf_token):<br />
+    def encrypt(text):<br />
+        m = hashlib.sha256()<br />
+        m.update(text)<br />
+        return base64.b64encode(m.hexdigest())<br />
+<br />
+    password_hash = encrypt(username + encrypt(password) + csrf_token)<br />
+<br />
+    return '%s%s4' % (username, password_hash)<br />
+<br />
+<br />
+WEB = &quot;http://192.168.1.1/&quot;<br />
+USERNAME = &quot;admin&quot;<br />
+PASSWORD = &quot;admin&quot;<br />
+<br />
+if <u>_name_</u> == &quot;<u>_main_</u>&quot;:<br />
+    s = login(WEB, USERNAME, PASSWORD)<br />
+    reboot(WEB, s)<br />
+#########################<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1490">#2</a>
+            <span class="comment_source_author">
+                            rvl
+                        </span>
+                        on
+            <span class="comment_source_date">2015-06-02 04:39</span>
+
+                                </div>
+    </div>
+    <a id="c1500"></a>
+    <div id="serendipity_comment_1500" class="serendipity_comment serendipity_comment_author_Jari-Turkia   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Thanks for the info. I didn't realize, that POSTing to /api/device/control would do a reboot. I'll add that to the docs.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1500">#2.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2015-06-08 16:57</span>
+
+                                </div>
+    </div>
+    <a id="c1503"></a>
+    <div id="serendipity_comment_1503" class="serendipity_comment serendipity_comment_author_Arnaud  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    In fact, these kind of API allow only small changes (POST commands), as the web access allow. <br />
+<br />
+The only way to make some powerful changes seem to send AT commands. <br />
+Unfortunately, a lot of commands are proprietary and not documented.<div class="serendipity_commentcount">Comments (3)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1503">#3</a>
+            <span class="comment_source_author">
+                            Arnaud
+                        </span>
+                        on
+            <span class="comment_source_date">2015-06-08 21:53</span>
+
+                                </div>
+    </div>
+    <a id="c1730"></a>
+    <div id="serendipity_comment_1730" class="serendipity_comment serendipity_comment_author_aFriend   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Is there a way i can assign a permanent IP address to a computer on the network based on its MAC address? it was easily done via the router web-ui in the old B593 router but the feature doesn't seem to exists in this newer <strong>supposedly</strong> more powerful router.<br />
+<br />
+i have the E5186s-22a. <br />
+<br />
+Thanks<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1730">#4</a>
+            <span class="comment_source_author">
+                            aFriend
+                        </span>
+                        on
+            <span class="comment_source_date">2016-03-15 06:07</span>
+
+                                </div>
+    </div>
+    <a id="c1777"></a>
+    <div id="serendipity_comment_1777" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Generally speaking: yes there is. For a static assignment of IPv4-address to happen, you will need a DHCP-server running and on that, your configuration needs to map the given MAC into an IPv4 -address.<br />
+<br />
+Back to reality: if you are in a situation where you'll be needing reliable IPv4-addressing in your own LAN, for godssake, don't mess around with an Huawei router. That's just a cheaply-made cheap box for mobile internet access. It's not a proper server regardless of the power it has. Even a dirt cheap but yet powerful enough RasperryPi could handle that for you. It is a real server.<br />
+<br />
+If your intention is to get a static address via 3G/LTE, then talk to your telco. If your problem is on the IPv6-side, then you'll definitely need a real server.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1777">#4.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-04-19 09:53</span>
+
+                                </div>
+    </div>
+    <a id="c1766"></a>
+    <div id="serendipity_comment_1766" class="serendipity_comment serendipity_comment_author_Mark   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hello, I have problem with this router. After firmware update only WiFi and Power shines. Could you help ? Combnation wps and wifi keys are alive, ping too,  telnet not but after upgrade still only wifi and power.<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1766">#5</a>
+            <span class="comment_source_author">
+                            Mark
+                        </span>
+                        on
+            <span class="comment_source_date">2016-04-16 20:32</span>
+
+                                </div>
+    </div>
+    <a id="c1768"></a>
+    <div id="serendipity_comment_1768" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Which firmware did you upgrade to which box?<br />
+<br />
+What you're describing sounds like you bricked it.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1768">#5.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-04-19 09:21</span>
+
+                                </div>
+    </div>
+    <a id="c1792"></a>
+    <div id="serendipity_comment_1792" class="serendipity_comment serendipity_comment_author_Hex   comment_evenbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    I also have this problem. I did NOT attempt to update my firmware (although  I think it may have been set to automatically update). After I got home last weekend, the device was non-functional. Power and WiFi lights are on. Does not broadcast a WiFi SSID. If I connect a PC to its Ethernet port, I cannot access the device's admin page @ 192.168.8.1. Did this thing perhaps update automatically and then managed to corrupt/brick itself?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1792">#5.1.1</a>
+            <span class="comment_source_author">
+                            Hex
+                        </span>
+                        on
+            <span class="comment_source_date">2016-04-28 23:21</span>
+
+                                </div>
+    </div>
+    <a id="c1793"></a>
+    <div id="serendipity_comment_1793" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 60px">
+        <div class="serendipity_commentBody">
+                    Read: https://blog.hqcodeshop.fi/archives/289-Huawei-E5186-Firmware-Upgrade-with-Multicast-Upgrade-Tool.html for firmware upgrades.<br />
+<br />
+It would be possible, that E5186 auto-upgrades itself and gets bricked. I think you're the second person claiming that such a thing could happen.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1793">#5.1.1.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-04-29 06:52</span>
+
+                                </div>
+    </div>
+    <a id="c1946"></a>
+    <div id="serendipity_comment_1946" class="serendipity_comment serendipity_comment_author_Deon   comment_evenbox" style="padding-left: 80px">
+        <div class="serendipity_commentBody">
+                    The unit has auto updated to the latest Huawei versions on switch-on.<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1946">#5.1.1.1.1</a>
+            <span class="comment_source_author">
+                            Deon
+                        </span>
+                        on
+            <span class="comment_source_date">2016-09-15 18:58</span>
+
+                                </div>
+    </div>
+    <a id="c1958"></a>
+    <div id="serendipity_comment_1958" class="serendipity_comment serendipity_comment_author_aluRamb0  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hi, i wanted to find out if there is a API from huawei with no luck and ended up here. trying to access the dialup/dial operation. this is my first couple of hours researching about this. any help would be appreciated<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1958">#6</a>
+            <span class="comment_source_author">
+                            aluRamb0
+                        </span>
+                        on
+            <span class="comment_source_date">2016-09-27 23:15</span>
+
+                                </div>
+    </div>
+    <a id="c1973"></a>
+    <div id="serendipity_comment_1973" class="serendipity_comment serendipity_comment_author_Jari-Turkia   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Sorry, I have no clue about Huawei's dial-up option. We don't use those in Finland.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1973">#6.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-10-14 16:34</span>
+
+                                </div>
+    </div>
+    <a id="c1961"></a>
+    <div id="serendipity_comment_1961" class="serendipity_comment serendipity_comment_author_Purnipsi  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hello!<br />
+<br />
+I have Huawei E5186 router and I am connected to Sonera's LTE-A network. (Bands 3 and 20). Is it anyhow possible to get Huawei report when LTE-A is in action? When I run command /api/net/net-mode I got following:<br />
+<br />
+03 3FFFFFFF 20000800C5<br />
+<br />
+Are there any clue?<br />
+<br />
+I contacted Sonera and they said that they are considering for a possibility to add LTE-A/4G+ icon to the WebUI.<div class="serendipity_commentcount">Comments (2)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1961">#7</a>
+            <span class="comment_source_author">
+                            Purnipsi
+                        </span>
+                        on
+            <span class="comment_source_date">2016-10-04 23:17</span>
+
+                                </div>
+    </div>
+    <a id="c1972"></a>
+    <div id="serendipity_comment_1972" class="serendipity_comment serendipity_comment_author_Jari-Turkia   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    What you have there is:<br />
+Network aquire order (4G/3G/2G): LTE<br />
+1) 2G/3G Frequency band preference:<br />
+2) 3FFFFFFF = CM_BAND_PREF_ANY<br />
+any band: 850,900,1700,1800,1900,2100 MHz<br />
+3) 4G Frequency bands used: 0x20000800C5 =<br />
+0x1: LTE BC1: 2100 MHz<br />
+0x4: LTE BC3: 1800 MHz<br />
+0x40: LTE BC7: 2600 MHz<br />
+0x80: LTE BC8: 900 MHz<br />
+0x80000: LTE BC20: 800 MHz<br />
+<br />
+That has no information about LTE-A being used or not used.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1972">#7.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-10-14 16:33</span>
+
+                                </div>
+    </div>
+    <a id="c1995"></a>
+    <div id="serendipity_comment_1995" class="serendipity_comment serendipity_comment_author_Purnipsi  comment_oddbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    Thank you for the information!<div class="serendipity_commentcount">Comments (2)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c1995">#7.1.1</a>
+            <span class="comment_source_author">
+                            Purnipsi
+                        </span>
+                        on
+            <span class="comment_source_date">2016-11-06 17:48</span>
+
+                                </div>
+    </div>
+    <a id="c2408"></a>
+    <div id="serendipity_comment_2408" class="serendipity_comment serendipity_comment_author_gaze   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Did you ever find out how to get the current CA (LTE-A) status from E5186?<br />
+<br />
+I just installed the latest Elisa FW (318) but it's not visible in the web UI and I can't find it in the API either.<br />
+<br />
+Did Telia ever include this feature in their FW? I have not tested their latest FW as I think it is still not officially released..<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2408">#7.2</a>
+            <span class="comment_source_author">
+                            gaze
+                        </span>
+                        on
+            <span class="comment_source_date">2018-03-27 10:33</span>
+
+                                </div>
+    </div>
+    <a id="c2416"></a>
+    <div id="serendipity_comment_2416" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    I did not succeed in doing that. Sorry.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2416">#7.2.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2018-04-04 18:44</span>
+
+                                </div>
+    </div>
+    <a id="c2027"></a>
+    <div id="serendipity_comment_2027" class="serendipity_comment serendipity_comment_author_moh   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hi , is there a way to enable some router features like ipv6 ?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2027">#8</a>
+            <span class="comment_source_author">
+                            moh
+                        </span>
+                        on
+            <span class="comment_source_date">2016-11-29 20:25</span>
+
+                                </div>
+    </div>
+    <a id="c2030"></a>
+    <div id="serendipity_comment_2030" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    No.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2030">#8.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2016-12-01 18:25</span>
+
+                                </div>
+    </div>
+    <a id="c2295"></a>
+    <div id="serendipity_comment_2295" class="serendipity_comment serendipity_comment_author_Jaap-Schaap   comment_evenbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    Hi, just curious: Tele2 sees I'm logging in with a 5186, can I change this name?<br />
+<br />
+Regards, Jaap<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2295">#8.1.1</a>
+            <span class="comment_source_author">
+                            Jaap Schaap
+                        </span>
+                        on
+            <span class="comment_source_date">2017-12-10 23:34</span>
+
+                                </div>
+    </div>
+    <a id="c2554"></a>
+    <div id="serendipity_comment_2554" class="serendipity_comment serendipity_comment_author_thom  comment_oddbox" style="padding-left: 60px">
+        <div class="serendipity_commentBody">
+                    Hoi Jaap,<br />
+ik ... [rest of the un-chipherable text removed]<br />
+<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2554">#8.1.1.1</a>
+            <span class="comment_source_author">
+                            thom
+                        </span>
+                        on
+            <span class="comment_source_date">2018-07-20 21:01</span>
+
+                                </div>
+    </div>
+    <a id="c2565"></a>
+    <div id="serendipity_comment_2565" class="serendipity_comment serendipity_comment_author_Jari-Turkia   comment_evenbox" style="padding-left: 80px">
+        <div class="serendipity_commentBody">
+                    Please, write your comments in English. That way all of us can read and optionally answer your questions.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2565">#8.1.1.1.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2018-08-12 13:52</span>
+
+                                </div>
+    </div>
+    <a id="c2099"></a>
+    <div id="serendipity_comment_2099" class="serendipity_comment serendipity_comment_author_Marcin  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    How to set LTEBand manually?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2099">#9</a>
+            <span class="comment_source_author">
+                            Marcin
+                        </span>
+                        on
+            <span class="comment_source_date">2017-03-29 19:39</span>
+
+                                </div>
+    </div>
+    <a id="c2102"></a>
+    <div id="serendipity_comment_2102" class="serendipity_comment serendipity_comment_author_Valtteri-Holopainen   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Change LTEBand. https://www.lteforum.at/mobilfunk/toolbox-fuer-huawei-router-mit-hilink.1872/<br />
+<br />
+/api/net/net-mode<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2102">#9.1</a>
+            <span class="comment_source_author">
+                            Valtteri Holopainen
+                        </span>
+                        on
+            <span class="comment_source_date">2017-04-09 12:32</span>
+
+                                </div>
+    </div>
+    <a id="c2198"></a>
+    <div id="serendipity_comment_2198" class="serendipity_comment serendipity_comment_author_KantiB  comment_oddbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Just wanted to understand that the Huawei HLINK interface is same across all Huawei models. We are writing an application to send and receive the SMS using Hlink.<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2198">#10</a>
+            <span class="comment_source_author">
+                            KantiB
+                        </span>
+                        on
+            <span class="comment_source_date">2017-08-23 12:32</span>
+
+                                </div>
+    </div>
+    <a id="c2461"></a>
+    <div id="serendipity_comment_2461" class="serendipity_comment serendipity_comment_author_Ririshi   comment_evenbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    I realize it's been some time and you may have already finished your project, but I managed to take Huawei's own Javascript code (for encrypted login) to create an application to send SMS using the API, running on Nodejs. Receiving SMS can be done by extending some of the code I wrote. If you would like, I could send you my code somehow?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2461">#10.1</a>
+            <span class="comment_source_author">
+                            Ririshi
+                        </span>
+                        on
+            <span class="comment_source_date">2018-05-13 22:25</span>
+
+                                </div>
+    </div>
+    <a id="c2466"></a>
+    <div id="serendipity_comment_2466" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    Ref.: https://blog.hqcodeshop.fi/archives/297-Ground-Rules-part-1-Contacting-me.html<br />
+<br />
+Absolutely you can. If you would have been kind enough to enter an email address to your comment, I would have been able to reply directly to you. Now I there is very little that I can do.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2466">#10.1.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2018-05-20 10:37</span>
+
+                                </div>
+    </div>
+    <a id="c2494"></a>
+    <div id="serendipity_comment_2494" class="serendipity_comment serendipity_comment_author_Alexander-van-Zandvliet   comment_evenbox" style="padding-left: 40px">
+        <div class="serendipity_commentBody">
+                    I would like to see that code.<br />
+<br />
+Can you post it here?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2494">#10.1.2</a>
+            <span class="comment_source_author">
+                            Alexander van Zandvliet
+                        </span>
+                        on
+            <span class="comment_source_date">2018-06-05 15:38</span>
+
+                                </div>
+    </div>
+    <a id="c2495"></a>
+    <div id="serendipity_comment_2495" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 60px">
+        <div class="serendipity_commentBody">
+                    I would like to do that, but after contacting Mr. Ririshi, he never got back on that.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2495">#10.1.2.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2018-06-05 18:25</span>
+
+                                </div>
+    </div>
+    <a id="c2510"></a>
+    <div id="serendipity_comment_2510" class="serendipity_comment serendipity_comment_author_Wookie   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hello Everyone,<br />
+<br />
+Is there any way to enable USSD on E5577Cs-321 (or E5186)? I'm more or less tech-savvy, Linux user, can write Python/Bash. But I'm a completely woose in webdev, so I could use a little guiding.<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2510">#11</a>
+            <span class="comment_source_author">
+                            Wookie
+                        </span>
+                        on
+            <span class="comment_source_date">2018-06-11 19:20</span>
+
+                                </div>
+    </div>
+    <a id="c2548"></a>
+    <div id="serendipity_comment_2548" class="serendipity_comment serendipity_comment_author_Homayoun  comment_oddbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    I need it. if everyone knows how to enable ussd, please inform us<br />
+best wishes,<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2548">#11.1</a>
+            <span class="comment_source_author">
+                            Homayoun
+                        </span>
+                        on
+            <span class="comment_source_date">2018-07-15 08:52</span>
+
+                                </div>
+    </div>
+    <a id="c2556"></a>
+    <div id="serendipity_comment_2556" class="serendipity_comment serendipity_comment_author_epalzeo   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Hello<br />
+<br />
+i'd like with python to login to POST commands,<br />
+<br />
+on huawei B528 or B525,<br />
+<br />
+however, each time i issue the POST on api/user/login, with username, password encoded,<br />
+<br />
+i've got errors :<br />
+[error] Failed with exception: ('Connection aborted.', BadStatusLine(&quot;''&quot;,))<br />
+<br />
+or [error] Failed with exception: ('Connection aborted.', error(54, 'Connection reset by peer'))<br />
+<br />
+Does those routers have different API to login ?<br />
+<br />
+Thanks in davance<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2556">#12</a>
+            <span class="comment_source_author">
+                            epalzeo
+                        </span>
+                        on
+            <span class="comment_source_date">2018-07-29 09:13</span>
+
+                                </div>
+    </div>
+    <a id="c2564"></a>
+    <div id="serendipity_comment_2564" class="serendipity_comment serendipity_comment_author_Jari-Turkia  comment_oddbox" style="padding-left: 20px">
+        <div class="serendipity_commentBody">
+                    Nice suggestion, but ... (there's always a but-part). I haven't done any Huawei hacking for a while and am not likely to do any. Unless something really interesting happens, then maybe. But for the time being, sorry, no avail.<div class="serendipity_commentcount">Comments (13)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2564">#12.1</a>
+            <span class="comment_source_author">
+                            Jari Turkia
+                        </span>
+                        on
+            <span class="comment_source_date">2018-08-12 13:50</span>
+
+                                </div>
+    </div>
+    <a id="c2663"></a>
+    <div id="serendipity_comment_2663" class="serendipity_comment serendipity_comment_author_Novak   comment_evenbox" style="padding-left: 0px">
+        <div class="serendipity_commentBody">
+                    Is there any way to find the max download rate of the router?<div class="serendipity_commentcount">Comment (1)</div>
+                </div>
+        <div class="serendipity_comment_source">
+            <a class="comment_source_trace" href="#c2663">#13</a>
+            <span class="comment_source_author">
+                            Novak
+                        </span>
+                        on
+            <span class="comment_source_date">2018-12-05 14:18</span>
+
+                                </div>
+    </div>
+
+
+                                <a id="feedback"></a>
+
+                
+                
+                <br />
+                <div class="serendipity_section_commentform">
+	                <div class="serendipity_commentsTitle">Add Comment</div>
+	                <div id="serendipityCommentFormC" class="serendipityCommentForm">
+    <div id="serendipity_replyform_0"></div>
+    <a id="serendipity_CommentForm"></a>
+    <form id="serendipity_comment" action="/index.php?url=archives/259-Huawei-E5186-AJAX-API.html#feedback" method="post">
+    <div><input type="hidden" name="serendipity[entry_id]" value="259" /></div>
+    <table border="0" width="100%" cellpadding="3">
+        <tr>
+            <td class="serendipity_commentsLabel"><label for="serendipity_commentform_name">Name</label></td>
+            <td class="serendipity_commentsValue"><input type="text" id="serendipity_commentform_name" name="serendipity[name]" value="" size="30" /></td>
+        </tr>
+
+        <tr>
+            <td class="serendipity_commentsLabel"><label for="serendipity_commentform_email">Email</label></td>
+            <td class="serendipity_commentsValue"><input type="text" id="serendipity_commentform_email" name="serendipity[email]" value="" /></td>
+        </tr>
+
+        <tr>
+            <td class="serendipity_commentsLabel"><label for="serendipity_commentform_url">Homepage</label></td>
+            <td class="serendipity_commentsValue"><input type="text" id="serendipity_commentform_url" name="serendipity[url]" value="" /></td>
+        </tr>
+
+        <tr>
+            <td class="serendipity_commentsLabel"><label for="serendipity_replyTo">In reply to</label></td>
+            <td class="serendipity_commentsValue"><select id="serendipity_replyTo" onchange="" name="serendipity[replyTo]"><option value="0">[ Top level ]</option><option value="1440">#1: Arnaud on 2015-04-16 10:45</option>
+<option value="1450">&#160;&#160;#1.1: Jari Turkia on 2015-04-22 16:56</option>
+<option value="1490">#2: rvl on 2015-06-02 04:39</option>
+<option value="1500">&#160;&#160;#2.1: Jari Turkia on 2015-06-08 16:57</option>
+<option value="1503">#3: Arnaud on 2015-06-08 21:53</option>
+<option value="1730">#4: aFriend on 2016-03-15 06:07</option>
+<option value="1777">&#160;&#160;#4.1: Jari Turkia on 2016-04-19 09:53</option>
+<option value="1766">#5: Mark on 2016-04-16 20:32</option>
+<option value="1768">&#160;&#160;#5.1: Jari Turkia on 2016-04-19 09:21</option>
+<option value="1792">&#160;&#160;&#160;&#160;#5.1.1: Hex on 2016-04-28 23:21</option>
+<option value="1793">&#160;&#160;&#160;&#160;&#160;&#160;#5.1.1.1: Jari Turkia on 2016-04-29 06:52</option>
+<option value="1946">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;#5.1.1.1.1: Deon on 2016-09-15 18:58</option>
+<option value="1958">#6: aluRamb0 on 2016-09-27 23:15</option>
+<option value="1973">&#160;&#160;#6.1: Jari Turkia on 2016-10-14 16:34</option>
+<option value="1961">#7: Purnipsi on 2016-10-04 23:17</option>
+<option value="1972">&#160;&#160;#7.1: Jari Turkia on 2016-10-14 16:33</option>
+<option value="1995">&#160;&#160;&#160;&#160;#7.1.1: Purnipsi on 2016-11-06 17:48</option>
+<option value="2408">&#160;&#160;#7.2: gaze on 2018-03-27 10:33</option>
+<option value="2416">&#160;&#160;&#160;&#160;#7.2.1: Jari Turkia on 2018-04-04 18:44</option>
+<option value="2027">#8: moh on 2016-11-29 20:25</option>
+<option value="2030">&#160;&#160;#8.1: Jari Turkia on 2016-12-01 18:25</option>
+<option value="2295">&#160;&#160;&#160;&#160;#8.1.1: Jaap Schaap on 2017-12-10 23:34</option>
+<option value="2554">&#160;&#160;&#160;&#160;&#160;&#160;#8.1.1.1: thom on 2018-07-20 21:01</option>
+<option value="2565">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;#8.1.1.1.1: Jari Turkia on 2018-08-12 13:52</option>
+<option value="2099">#9: Marcin on 2017-03-29 19:39</option>
+<option value="2102">&#160;&#160;#9.1: Valtteri Holopainen on 2017-04-09 12:32</option>
+<option value="2198">#10: KantiB on 2017-08-23 12:32</option>
+<option value="2461">&#160;&#160;#10.1: Ririshi on 2018-05-13 22:25</option>
+<option value="2466">&#160;&#160;&#160;&#160;#10.1.1: Jari Turkia on 2018-05-20 10:37</option>
+<option value="2494">&#160;&#160;&#160;&#160;#10.1.2: Alexander van Zandvliet on 2018-06-05 15:38</option>
+<option value="2495">&#160;&#160;&#160;&#160;&#160;&#160;#10.1.2.1: Jari Turkia on 2018-06-05 18:25</option>
+<option value="2510">#11: Wookie on 2018-06-11 19:20</option>
+<option value="2548">&#160;&#160;#11.1: Homayoun on 2018-07-15 08:52</option>
+<option value="2556">#12: epalzeo on 2018-07-29 09:13</option>
+<option value="2564">&#160;&#160;#12.1: Jari Turkia on 2018-08-12 13:50</option>
+<option value="2663">#13: Novak on 2018-12-05 14:18</option>
+</select></td>
+        </tr>
+
+        <tr>
+            <td class="serendipity_commentsLabel"><label for="serendipity_commentform_comment">Comment</label></td>
+            <td class="serendipity_commentsValue">
+                <textarea rows="10" cols="40" id="serendipity_commentform_comment" name="serendipity[comment]"></textarea><br />
+                <div class="serendipity_commentDirection serendipity_comment_spamblock">E-Mail addresses will not be displayed and will only be used for E-Mail notifications.</div><input type="hidden" name="serendipity[token]" value="f774a8b6df272a18e09b12e1dff74a58" /><div class="serendipity_commentDirection serendipity_comment_s9ymarkup">Enclosing asterisks marks text as bold (*word*), underscore are made via _word_.</div><div class="serendipity_commentDirection serendipity_comment_emoticate">Standard emoticons like :-) and ;-) are converted to images.</div><script src='https://www.google.com/recaptcha/api.js'></script><div class="g-recaptcha" data-sitekey="6LeNoE0UAAAAAOKBTTL8L0Ma-3g7NSjiSOeRarH0"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>&#160;</td>
+            <td class="serendipity_commentsLabel">
+                <input id="checkbox_remember" type="checkbox" name="serendipity[remember]"  /><label for="checkbox_remember">Remember Information? </label>
+                    <br />
+                <input id="checkbox_subscribe" type="checkbox" name="serendipity[subscribe]"  /><label for="checkbox_subscribe">Subscribe to this entry</label>
+                </td>
+       </tr>
+
+       <tr>
+            <td class="serendipity_commentsValue serendipity_msg_important" colspan="2">Submitted comments will be subject to moderation before being displayed.</td>
+       </tr>
+
+       <tr>
+            <td>&#160;</td>
+            <td><input type="submit" name="serendipity[submit]" value="Submit Comment" /> <input type="submit" id="serendipity_preview" name="serendipity[preview]" value="Preview" /></td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+				</div>
+
+                            </div>
+        
+        
+            </div>
+    
+    <div class='serendipity_entryFooter' style="text-align: center">
+    
+    
+    
+    
+    </div>
+		
+<!-- ENTRIES END -->
+
+
+
+<!-- CONTENT END -->
+</td>
+        <td id="serendipityRightSideBar" valign="top">    <div class="serendipitySideBarItem container_serendipity_plugin_calendar">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_calendar">Calendar</h3>        <div class="serendipitySideBarContent"><table style="width: 100%" cellspacing="0" cellpadding="0" class="serendipity_calendar">
+    <tr>
+        <td class="serendipity_calendarHeader">
+            <a title="Back" href="https://blog.hqcodeshop.fi/archives/2018/11.html"><img alt="Back" src="/templates/default/img/back.png" width="16" height="12" style="border: 0px" /></a>
+        </td>
+
+        <td colspan="5" class="serendipity_calendarHeader" style="text-align: center; vertical-align: bottom">
+            <b><a style="white-space: nowrap" href="https://blog.hqcodeshop.fi/archives/2018/12.html">December '18</a></b>
+        </td>
+
+        <td class="serendipity_calendarHeader" style="text-align: right">
+            <a title="Forward" href="https://blog.hqcodeshop.fi/archives/2019/01.html"><img alt="Forward" src="/templates/default/img/forward.png" width="16" height="12" style="border: 0px" /></a>
+        </td>
+    </tr>
+
+    <tr>
+            <td scope="col" abbr="Monday" title="Monday" class="serendipity_weekDayName" align="center">Mon</td>
+            <td scope="col" abbr="Tuesday" title="Tuesday" class="serendipity_weekDayName" align="center">Tue</td>
+            <td scope="col" abbr="Wednesday" title="Wednesday" class="serendipity_weekDayName" align="center">Wed</td>
+            <td scope="col" abbr="Thursday" title="Thursday" class="serendipity_weekDayName" align="center">Thu</td>
+            <td scope="col" abbr="Friday" title="Friday" class="serendipity_weekDayName" align="center">Fri</td>
+            <td scope="col" abbr="Saturday" title="Saturday" class="serendipity_weekDayName" align="center">Sat</td>
+            <td scope="col" abbr="Sunday" title="Sunday" class="serendipity_weekDayName" align="center">Sun</td>
+        </tr>
+
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstRow FirstInRow">&#160;</td>
+                    <td class="serendipity_calendarDay FirstRow">&#160;</td>
+                    <td class="serendipity_calendarDay FirstRow">&#160;</td>
+                    <td class="serendipity_calendarDay FirstRow">&#160;</td>
+                    <td class="serendipity_calendarDay FirstRow">&#160;</td>
+                    <td class="serendipity_calendarDay FirstRow">1</td>
+                    <td class="serendipity_calendarDay FirstRow LastInRow Active Link"><a href="https://blog.hqcodeshop.fi/archives/2018/12/02.html">2</a></td>
+                </tr>
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstInRow">3</td>
+                    <td class="serendipity_calendarDay ">4</td>
+                    <td class="serendipity_calendarDay ">5</td>
+                    <td class="serendipity_calendarDay ">6</td>
+                    <td class="serendipity_calendarDay ">7</td>
+                    <td class="serendipity_calendarDay ">8</td>
+                    <td class="serendipity_calendarDay LastInRow">9</td>
+                </tr>
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstInRow Today Active Link"><a href="https://blog.hqcodeshop.fi/archives/2018/12/10.html">10</a></td>
+                    <td class="serendipity_calendarDay ">11</td>
+                    <td class="serendipity_calendarDay ">12</td>
+                    <td class="serendipity_calendarDay ">13</td>
+                    <td class="serendipity_calendarDay ">14</td>
+                    <td class="serendipity_calendarDay ">15</td>
+                    <td class="serendipity_calendarDay LastInRow">16</td>
+                </tr>
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstInRow">17</td>
+                    <td class="serendipity_calendarDay ">18</td>
+                    <td class="serendipity_calendarDay ">19</td>
+                    <td class="serendipity_calendarDay ">20</td>
+                    <td class="serendipity_calendarDay ">21</td>
+                    <td class="serendipity_calendarDay ">22</td>
+                    <td class="serendipity_calendarDay LastInRow">23</td>
+                </tr>
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstInRow">24</td>
+                    <td class="serendipity_calendarDay ">25</td>
+                    <td class="serendipity_calendarDay ">26</td>
+                    <td class="serendipity_calendarDay ">27</td>
+                    <td class="serendipity_calendarDay ">28</td>
+                    <td class="serendipity_calendarDay ">29</td>
+                    <td class="serendipity_calendarDay LastInRow">30</td>
+                </tr>
+            <tr class="serendipity_calendar">
+                    <td class="serendipity_calendarDay FirstInRow LastRow">31</td>
+                    <td class="serendipity_calendarDay LastRow">&#160;</td>
+                    <td class="serendipity_calendarDay LastRow">&#160;</td>
+                    <td class="serendipity_calendarDay LastRow">&#160;</td>
+                    <td class="serendipity_calendarDay LastRow">&#160;</td>
+                    <td class="serendipity_calendarDay LastRow">&#160;</td>
+                    <td class="serendipity_calendarDay LastInRow LastRow">&#160;</td>
+                </tr>
+    </table>
+</div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_quicksearch">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_quicksearch">Quicksearch</h3>        <div class="serendipitySideBarContent"><form id="searchform" action="/index.php" method="get">
+    <div>
+        <input type="hidden" name="serendipity[action]" value="search" />
+        <input type="hidden" name="serendipity[fullentry]" value="1" />
+        <input type="text" id="serendipityQuickSearchTermField" name="serendipity[searchTerm]" size="13" />
+        <input class="quicksearch_submit" type="submit" value="&gt;" name="serendipity[searchButton]" title="Go!" style="width: 2em;" />
+    </div>
+    <div id="LSResult" style="display: none;"><div id="LSShadow"></div></div>
+</form>
+</div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_archives">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_archives">Archives</h3>        <div class="serendipitySideBarContent"><ul class="plainList">
+<li><a href="/archives/2018/12.html" title="December 2018">December 2018</a></li>
+<li><a href="/archives/2018/11.html" title="November 2018">November 2018</a></li>
+<li><a href="/archives/2018/10.html" title="October 2018">October 2018</a></li>
+<li><a href="/index.php?frontpage">Recent...</a></li>
+<li><a href="https://blog.hqcodeshop.fi/archive">Older...</a></li>
+</ul>
+</div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_categories">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_categories">Categories</h3>        <div class="serendipitySideBarContent"><form action="https://blog.hqcodeshop.fi/index.php?frontpage" method="post">
+              <div id="serendipity_category_form_content"><ul id="serendipity_categories_list" style="list-style: none; margin: 0px; padding: 0px"><li class="category_depth0 category_1" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="1" /><a class="serendipity_xml_icon" href="/feeds/categories/1-Blog.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/1-Blog" title="Meta-ramblings about this blog" style="padding-left: 0px">Blog</a></li>
+<li class="category_depth0 category_6" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="6" /><a class="serendipity_xml_icon" href="/feeds/categories/6-Companies.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/6-Companies" title="Ramblings about service provided by various companies" style="padding-left: 0px">Companies</a></li>
+<li class="category_depth0 category_2" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="2" /><a class="serendipity_xml_icon" href="/feeds/categories/2-Hardware.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/2-Hardware" title="Ramblings about computer (related) hardware" style="padding-left: 0px">Hardware</a></li>
+<li class="category_depth1 category_10" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="10" /><a class="serendipity_xml_icon" href="/feeds/categories/10-Apple.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/10-Apple" title="Apple talk" style="padding-left: 6px">Apple</a></li>
+<li class="category_depth1 category_11" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="11" /><a class="serendipity_xml_icon" href="/feeds/categories/11-Huawei.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/11-Huawei" title="Other Huawei LTE-stuff" style="padding-left: 6px">Huawei</a></li>
+<li class="category_depth1 category_7" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="7" /><a class="serendipity_xml_icon" href="/feeds/categories/7-Huawei-B593.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/7-Huawei-B593" title="Ramblings about Huwei B593 4G router" style="padding-left: 6px">Huawei B593</a></li>
+<li class="category_depth0 category_4" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="4" /><a class="serendipity_xml_icon" href="/feeds/categories/4-Operating-systems.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/4-Operating-systems" title="Ramblings about operating systems" style="padding-left: 0px">Operating systems</a></li>
+<li class="category_depth1 category_12" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="12" /><a class="serendipity_xml_icon" href="/feeds/categories/12-Linux.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/12-Linux" title="" style="padding-left: 6px">Linux</a></li>
+<li class="category_depth1 category_13" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="13" /><a class="serendipity_xml_icon" href="/feeds/categories/13-MacOS.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/13-MacOS" title="" style="padding-left: 6px">MacOS</a></li>
+<li class="category_depth1 category_14" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="14" /><a class="serendipity_xml_icon" href="/feeds/categories/14-Windows.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/14-Windows" title="" style="padding-left: 6px">Windows</a></li>
+<li class="category_depth0 category_5" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="5" /><a class="serendipity_xml_icon" href="/feeds/categories/5-Programming.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/5-Programming" title="Ramblings about writing computer software" style="padding-left: 0px">Programming</a></li>
+<li class="category_depth0 category_9" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="9" /><a class="serendipity_xml_icon" href="/feeds/categories/9-Security.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/9-Security" title="Ramblings about information security" style="padding-left: 0px">Security</a></li>
+<li class="category_depth0 category_3" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="3" /><a class="serendipity_xml_icon" href="/feeds/categories/3-Software.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/3-Software" title="Ramblings about pieces of software" style="padding-left: 0px">Software</a></li>
+<li class="category_depth1 category_8" style="display: block;"><input style="width: 15px" type="checkbox" name="serendipity[multiCat][]" value="8" /><a class="serendipity_xml_icon" href="/feeds/categories/8-Parallels-Plesk-Panel.rss"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a> <a href="/categories/8-Parallels-Plesk-Panel" title="Ramblings about Parallels' web hosting product" style="padding-left: 6px">Parallels Plesk Panel</a></li>
+</ul><div class="category_submit"><input type="submit" name="serendipity[isMultiCat]" value="Go!" /></div></div></form></div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_syndication">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_syndication">RSS feeds of this Blog</h3>        <div class="serendipitySideBarContent">
+<ul id="serendipity_syndication_list" class="plainList"><li><a class="subtome" href="https://blog.hqcodeshop.fi/feeds/index.rss2" onclick="document.subtomeBtn=this;document.subtomeBtn.dataset['subtomeFeeds']='https%3A%2F%2Fblog.hqcodeshop.fi%2Ffeeds%2Findex.rss2';var s=document.createElement('script');s.src='https://www.subtome.com/load.js';document.body.appendChild(s);return false;"><img src="/templates/2k11/img/subtome.png" alt="XML" style="border: 0px" /></a>
+</li>
+<li><a class="subtome" href="https://blog.hqcodeshop.fi/feeds/comments.rss2" onclick="document.subtomeBtn=this;document.subtomeBtn.dataset['subtomeFeeds']='https%3A%2F%2Fblog.hqcodeshop.fi%2Ffeeds%2Fcomments.rss2';var s=document.createElement('script');s.src='https://www.subtome.com/load.js';document.body.appendChild(s);return false;"><img src="/templates/brownpaper/img/xml.gif" alt="XML" style="border: 0px" /></a>
+ <a href="https://blog.hqcodeshop.fi/feeds/comments.rss2" onclick="document.subtomeBtn=this;document.subtomeBtn.dataset['subtomeFeeds']='https%3A%2F%2Fblog.hqcodeshop.fi%2Ffeeds%2Fcomments.rss2';var s=document.createElement('script');s.src='https://www.subtome.com/load.js';document.body.appendChild(s);return false;">comment feed</a>
+</li>
+</ul>
+</div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_superuser">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_superuser">Blog Administration</h3>        <div class="serendipitySideBarContent"><a href="/admin" rel="nofollow" title="Open login screen">Open login screen</a></div>
+    </div>
+    <div class="serendipitySideBarItem container_serendipity_plugin_plug">
+        <h3 class="serendipitySideBarTitle serendipity_plugin_plug">Powered by</h3>        <div class="serendipitySideBarContent"><div class="serendipityPlug">
+    <a title="Powered by Serendipity" href="http://www.s9y.org/"><img src="/templates/default/img/s9y_banner_small.png" alt="Serendipity PHP Weblog" style="border: 0px" /></a>
+</div>
+</div>
+    </div>
+</td>
+    </tr>
+
+</table>
+</div></div></div></div></div></div></div></div>
+<div class="creditfooter">
+Parts of this serendipity template are by <a href="http://abdussamad.5gigs.com" >Abdussamad Abdurrazzaq</a>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,534 @@
+https://www.lteforum.at/mobilfunk/e5186-python-reboot-script.7101/
+https://blog.hqcodeshop.fi/archives/259-Huawei-E5186-AJAX-API.html
+
+
+Huawei E5186 AJAX API
+Hacker's ramblings
+Huawei E5186 AJAX API
+Monday, March 16. 2015
+As I wrote in my E5186 review, there is a very good API for accessing the box.
+
+All responses start with a <?xml version="1.0" encoding="UTF-8"?>. API-calls have <response> as the root element, config-calls have <config> as the root element. Some of the API-calls can be set (POST) or get (GET). Config cannot be set (POST), only read (GET).
+
+URI	
+GET /
+POST
+
+Login
+only	Description	Sample
+/config/global/config.xml	GET	 	Config	
+<homepage/>
+<default_language>de-de</default_language>
+<dialogdisapear>3000</dialogdisapear>
+<tip_disapear>3000</tip_disapear>
+<update_interval>3000</update_interval>
+<ap_station_enabled>0</ap_station_enabled>
+<title>Mobile Broadband</title>
+<login>1</login>
+<autoapn_enabled>0</autoapn_enabled>
+<footer>1</footer>
+<battery_enabled>0</battery_enabled>
+<continue_button>1</continue_button>
+<special_redirect>1</special_redirect>
+<menu_number>5</menu_number>
+<roam_warn_enabled>1</roam_warn_enabled>
+<hotlinks>
+<enable>1</enable>
+<items>
+<item/>
+<item/>
+<item/>
+</items>
+</hotlinks>
+<appmanagements>
+<enabled>0</enabled>
+<mobileWifi>
+<android>http:&#x2F;&#x2F;consumer.huawei.com
+&#x2F;minisite&#x2F;mobilewifiapp
+&#x2F;apk&#x2F;HuaweiMobileWiFi.apk
+</android>
+<ios>https:&#x2F;&#x2F;itunes.apple.com
+&#x2F;app&#x2F;huawei-mobile-wifi
+&#x2F;id546979875?ls=1&amp;mt=8</ios>
+<windows/>
+</mobileWifi>
+<mobileDoctor>
+<windowsOS>http:&#x2F;&#x2F;consumer.huawei.com
+&#x2F;en&#x2F;support&#x2F;downloads
+&#x2F;detail&#x2F;index.htm?id=16921
+</windowsOS>
+<macOS/>
+<linuxOS/>
+</mobileDoctor>
+</appmanagements>
+<commend_enable>0</commend_enable>
+<connection>
+<enable>1</enable>
+<connectionstatus>1</connectionstatus>
+</connection>
+<position_info>
+<offset>0</offset>
+<offset_ie6>0</offset_ie6>
+</position_info>
+<menu>
+<home>home</home>
+<statistic>statistic</statistic>
+<commend>commend</commend>
+<sms>
+<inbox>smsinbox</inbox>
+<sent>smssent</sent>
+<drafts>smsdrafts</drafts>
+<sms_center_number>messagesettings</sms_center_number>
+</sms>
+<update>
+<update_online>update</update_online>
+<update_local>update_local</update_local>
+</update>
+<ussd>
+<prepaid>
+<pre_service_title>activate_internet_service
+</pre_service_title>
+<pre_fun_balanceInquiry>balanceInquiry
+</pre_fun_balanceInquiry>
+<pre_fun_charge>charge</pre_fun_charge>
+<pre_fun_general>general</pre_fun_general>
+</prepaid>
+<postpaid>
+<post_service_title>activate_internet_service
+</post_service_title>
+<post_fun_balanceInquiry>balanceInquiry
+</post_fun_balanceInquiry>
+<post_fun_charge>charge</post_fun_charge>
+<post_fun_general>general</post_fun_general>
+</postpaid>
+</ussd>
+<settings>
+<quick_setup>quicksetup</quick_setup>
+<dialup>
+<mobileconnection>mobileconnection</mobileconnection>
+<profilesmgr>profilesmgr</profilesmgr>
+<mobilenetworksettings>mobilenetworksettings
+</mobilenetworksettings>
+</dialup>
+<internet>
+<wifinetworks>wifinetworks</wifinetworks>
+<wifipriority>wifipriority</wifipriority>
+<stationwps>stationwps</stationwps>
+</internet>
+<wlan>
+<wlanbasicsettings>wlanbasicsettings
+</wlanbasicsettings>
+<wlanadvanced>wlanadvanced</wlanadvanced>
+<wlanmacfilter>wlanmacfilter</wlanmacfilter>
+<wps>wps</wps>
+<dhcp>dhcp</dhcp>
+</wlan>
+<voip>
+<serverbasic>serverbasic</serverbasic>
+<voipinformation>voipinformation</voipinformation>
+<sipbasic>sipbasic</sipbasic>
+<speeddial>speeddial</speeddial>
+<sipadvance>sipadvance</sipadvance>
+<voiceadvanced>voiceadvanced</voiceadvanced>
+<sipvoicecodec>sipvoicecodec</sipvoicecodec>
+</voip>
+<security>
+<pincodemanagement>pincodemanagement
+</pincodemanagement>
+<firewallswitch>firewallswitch</firewallswitch>
+<macfilter>macfilter</macfilter>
+<lanipfilter>lanipfilter</lanipfilter>
+<virtualserver>virtualserver</virtualserver>
+<dmzsettings>dmzsettings</dmzsettings>
+<nat>nat</nat>
+<ddns>ddns</ddns>
+<bridgemode>bridgemode</bridgemode>
+<urlfilter>urlfilter</urlfilter>
+</security>
+<cbssettings>cbssettings</cbssettings>
+<system>
+<deviceinformation>deviceinformation
+</deviceinformation>
+<modifypassword>modifypassword</modifypassword>
+<diagnosis>diagnosis</diagnosis>
+<restore>restore</restore>
+<reboot>reboot</reboot>
+<systemsettings>systemsettings</systemsettings>
+</system>
+</settings>
+</menu>
+
+/config/global/net-type.xml	GET	 	Config ?	<networktypes><index>001</index>
+<networktype></networktype></networktypes>
+<networktypes><index>002</index>
+<networktype></networktype></networktypes>
+<networktypes><index>003</index>
+<networktype></networktype></networktypes>
+<networktypes><index>004</index>
+<networktype></networktype></networktypes>
+<networktypes><index>005</index>
+<networktype></networktype></networktypes>
+<networktypes><index>006</index>
+<networktype></networktype></networktypes>
+<networktypes><index>007</index>
+<networktype></networktype></networktypes>
+<networktypes><index>008</index>
+<networktype></networktype></networktypes>
+<networktypes><index>009</index>
+<networktype></networktype></networktypes>
+<networktypes><index>010</index>
+<networktype></networktype></networktypes>
+<networktypes><index>011</index>
+<networktype></networktype></networktypes>
+<networktypes><index>012</index>
+<networktype></networktype></networktypes>
+<networktypes><index>013</index>
+<networktype></networktype></networktypes>
+<networktypes><index>015</index>
+<networktype></networktype></networktypes>
+<networktypes><index>017</index>
+<networktype></networktype></networktypes>
+<networktypes><index>018</index>
+<networktype></networktype></networktypes>
+<networktypes><index>019</index>
+<networktype></networktype></networktypes>
+<networktypes><index>021</index>
+<networktype></networktype></networktypes>
+<networktypes><index>022</index>
+<networktype></networktype></networktypes>
+<networktypes><index>023</index>
+<networktype></networktype></networktypes>
+<networktypes><index>024</index>
+<networktype></networktype></networktypes>
+<networktypes><index>025</index>
+<networktype></networktype></networktypes>
+<networktypes><index>026</index>
+<networktype></networktype></networktypes>
+<networktypes><index>027</index>
+<networktype></networktype></networktypes>
+<networktypes><index>028</index>
+<networktype></networktype></networktypes>
+<networktypes><index>029</index>
+<networktype></networktype></networktypes>
+<networktypes><index>030</index>
+<networktype></networktype></networktypes>
+<networktypes><index>031</index>
+<networktype></networktype></networktypes>
+<networktypes><index>032</index>
+<networktype></networktype></networktypes>
+<networktypes><index>033</index>
+<networktype></networktype></networktypes>
+<networktypes><index>034</index>
+<networktype></networktype></networktypes>
+<networktypes><index>035</index>
+<networktype></networktype></networktypes>
+<networktypes><index>036</index>
+<networktype></networktype></networktypes>
+<networktypes><index>041</index>
+<networktype></networktype></networktypes>
+<networktypes><index>042</index>
+<networktype></networktype></networktypes>
+<networktypes><index>043</index>
+<networktype></networktype></networktypes>
+<networktypes><index>044</index>
+<networktype></networktype></networktypes>
+<networktypes><index>045</index>
+<networktype></networktype></networktypes>
+<networktypes><index>046</index>
+<networktype></networktype></networktypes>
+<networktypes><index>061</index>
+<networktype></networktype></networktypes>
+<networktypes><index>062</index>
+<networktype></networktype></networktypes>
+<networktypes><index>063</index>
+<networktype></networktype></networktypes>
+<networktypes><index>064</index>
+<networktype></networktype></networktypes>
+<networktypes><index>065</index>
+<networktype></networktype></networktypes>
+<networktypes><index>101</index>
+<networktype></networktype></networktypes>
+/config/pcassistant/config.xml	GET	 	 	<!-- 特性开关(要增加这个开关，与其他模块统一) -->
+<enable>0</enable>
+ 
+
+<!-- PC助手页面链接地址 -->
+<winpath>http://www.huaweidevice.com/resource
+/mini/201105202018/bolt-card/setup_win.exe</winpath>
+<macpath>http://www.huaweidevice.com/resource
+/mini/201105202018/bolt-card/setup_mac.zip</macpath>
+<upgradepath>http://support.microsoft.com/hotfix/KBHotfix.aspx?kbnum=945436kbln=zh-cn</upgradepath>
+
+/config/global/languagelist.xml	GET	 	 	<languages>
+<!-- UI显示的语言列表 -->
+<language>de-de</language>
+<language>en-us</language>
+</languages>
+<privacy_policy_url>
+<default_url>http://consumer.huawei.com/en/privacy-policy/index.htm</default_url>
+<en_us>http://consumer.huawei.com/en/privacy-policy/index.htm</en_us>        
+<zh_cn>http://consumer.huawei.com/cn/privacy-policy/index.htm</zh_cn>        
+</privacy_policy_url>
+ 
+
+<usermanual_language>
+<default_language>de-de</default_language>
+<support_language>
+<language>en-us</language>        
+<language>de-de</language>        
+</support_language>
+</usermanual_language>
+
+/config/deviceinformation/config.xml	GET	 	 	<devicename>1</devicename>
+<serialnumber>0</serialnumber>
+<imei>1</imei>
+<imsi>1</imsi>
+<iccid>0</iccid>
+<msisdn>1</msisdn>
+<hardwareversion>1</hardwareversion>
+<softwareversion>1</softwareversion>
+<webuiversion>1</webuiversion>
+<macaddress1>1</macaddress1>
+<macaddress2>0</macaddress2>
+<productfamily>0</productfamily>
+<classify>0</classify>
+<wanipaddress>1</wanipaddress>
+<wanipv6address>0</wanipv6address>
+<esn>0</esn>
+<meid>0</meid>
+<pci>0</pci>
+<sc>0</sc>
+<cell_id>0</cell_id>
+<rsrq>0</rsrq>
+<rsrp>0</rsrp>
+<rssi>0</rssi>
+<sinr>0</sinr>
+<rscp>0</rscp>
+<ecio>0</ecio>
+/config/webuicfg/config.xml	GET	 	 	<lanipfilter>
+<wan>1</wan>
+<number>16</number>
+<lan_enable>1</lan_enable>
+<protocol_imcp>1</protocol_imcp>
+</lanipfilter>
+<specialapplication>
+<number>16</number>
+</specialapplication>
+<virtualserver>
+<number>16</number>
+</virtualserver>
+<firewallwanportpingswitch_enable>1
+</firewallwanportpingswitch_enable>
+<urlfilter><number>16</number></urlfilter>
+<dialog_new_version>1</dialog_new_version>  
+<install_processbar_enable>1
+</install_processbar_enable>
+<install_processbar_speed>1
+</install_processbar_speed>
+/api/cradle/status-info	GET	 	 	<cradlestatus>0</cradlestatus>
+<connectstatus>902</connectstatus>
+<connectionmode>5</connectionmode>
+<currenttime>0</currenttime>
+<macaddress>38:F8:89:38:F8:89</macaddress>
+<ipaddress></ipaddress>
+<netmask></netmask>
+<gateway></gateway>
+<primarydns></primarydns>
+<secondarydns></secondarydns>
+/api/device/autorun-version	GET	 	Radio hardware version?	<Version>22.001.07.00.03</Version>
+/api/device/basic_information	GET	 	LTE, customer premises equipment	<productfamily>LTE</productfamily>
+<classify>cpe</classify>
+<multimode>0</multimode>
+/api/device/control	POST	 	Reboot the device	<Control>1</Control>
+/api/device/device-feature-switch	GET	 	 	<coulometer_enabled>0</coulometer_enabled>
+<copyright_enabled>1</copyright_enabled>
+/api/device/information	GET	 	Android-side version information	<DeviceName>E5186s-22a</DeviceName>
+<SerialNumber>W</SerialNumber>
+<Imei>8643910</Imei>
+<Imsi>2</Imsi>
+<Iccid>8</Iccid>
+<Msisdn>041</Msisdn>
+<HardwareVersion>CL1E5175HM</HardwareVersion>
+<SoftwareVersion>21.298.00.00.55</SoftwareVersion>
+<WebUIVersion>16.100.02.00.03</WebUIVersion>
+<MacAddress1>38:F8:89:38:F8:89</MacAddress1>
+<MacAddress2></MacAddress2>
+<ProductFamily>LTE</ProductFamily>
+<Classify>cpe</Classify>
+<supportmode></supportmode>
+<workmode>LTE</workmode>
+/api/device/signal	GET	 	Cell ID and signal quality parameters: RSRQ, RSRP, RSSI, SINR, RSCP, Ec/Io	<pci>82</pci>
+<sc></sc>
+<cell_id>551</cell_id>
+<rsrq>-6dB</rsrq>
+<rsrp>-102dBm</rsrp>
+<rssi>-89dBm</rssi>
+<sinr>3dB</sinr>
+<rscp></rscp>
+<ecio></ecio>
+<mode>7</mode>
+/api/device/usb-tethering-switch	?	 	 	 
+/api/dialup/connection	GET	 	 	<RoamAutoConnectEnable>0</RoamAutoConnectEnable>
+<MaxIdelTime>600</MaxIdelTime>
+<ConnectMode>0</ConnectMode>
+<MTU>1500</MTU>
+<auto_dial_switch>1</auto_dial_switch>
+/api/dialup/dial	?	 	 	 
+/api/dialup/mobile-dataswitch	GET	 	 	<dataswitch>1</dataswitch>
+/api/global/module-switch	GET	 	Features of the router	<ussd_enabled>0</ussd_enabled>
+<bbou_enabled>1</bbou_enabled>
+<sms_enabled>1</sms_enabled>
+<sdcard_enabled>0</sdcard_enabled>
+<wifi_enabled>1</wifi_enabled>
+<statistic_enabled>1</statistic_enabled>
+<help_enabled>1</help_enabled>
+<stk_enabled>0</stk_enabled>
+<pb_enabled>0</pb_enabled>
+<dlna_enabled>0</dlna_enabled>
+<ota_enabled>0</ota_enabled>
+<wifioffload_enabled>0</wifioffload_enabled>
+<cradle_enabled>1</cradle_enabled>
+<multssid_enable>1</multssid_enable>
+<ipv6_enabled>0</ipv6_enabled>
+<monthly_volume_enabled>1</monthly_volume_enabled>
+<powersave_enabled>0</powersave_enabled>
+<sntp_enabled>0</sntp_enabled>
+<dataswitch_enabled>1</dataswitch_enabled>
+<ddns_enabled>0</ddns_enabled>
+<sambashare_enabled>0</sambashare_enabled>
+<poweroff_enabled>0</poweroff_enabled>
+<fw_macfilter_enabled>1</fw_macfilter_enabled>
+<ecomode_enabled>1</ecomode_enabled>
+<zonetime_enabled>0</zonetime_enabled>
+<diagnosis_enabled>1</diagnosis_enabled>
+<localupdate_enabled>1</localupdate_enabled>
+<cbs_enabled>0</cbs_enabled>
+<qrcode_enabled>0</qrcode_enabled>
+<charger_enbaled>0</charger_enbaled>
+/api/host/info	POST	 	Web-admin client information for the router	<Time>20150315223426</Time>
+<Timezone>GMT+02:00</Timezone>
+<Platform>Win32</Platform>
+<PlatformVer>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0</PlatformVer>
+<Navigator>5.0 (Windows)</Navigator>
+<NavigatorVer>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0</NavigatorVer>
+/api/language/current-language	GET	 	Selected language. There is a list of supported languages at /config/global/languagelist.xml	<CurrentLanguage>en-us</CurrentLanguage>
+/api/monitoring/check-notifications	GET	 	 	<UnreadMessage>0</UnreadMessage>
+<SmsStorageFull>0</SmsStorageFull>
+<OnlineUpdateStatus>14</OnlineUpdateStatus>
+/api/monitoring/converged-status	GET	 	SIM info	<SimState>257</SimState>
+<SimLockEnable>0</SimLockEnable>
+<CurrentLanguage>en-us</CurrentLanguage>
+/api/monitoring/status	GET	 	 	<ConnectionStatus>901</ConnectionStatus>
+<WifiConnectionStatus></WifiConnectionStatus>
+<SignalStrength></SignalStrength>
+<SignalIcon>3</SignalIcon>
+<CurrentNetworkType>101</CurrentNetworkType>
+<CurrentServiceDomain>3</CurrentServiceDomain>
+<RoamingStatus>0</RoamingStatus>
+<BatteryStatus></BatteryStatus>
+<BatteryLevel></BatteryLevel>
+<BatteryPercent></BatteryPercent>
+<simlockStatus>0</simlockStatus>
+<WanIPAddress>37.33.207.127</WanIPAddress>
+<WanIPv6Address></WanIPv6Address>
+<PrimaryDns>62.241.198.245</PrimaryDns>
+<SecondaryDns>62.241.198.246</SecondaryDns>
+<PrimaryIPv6Dns></PrimaryIPv6Dns>
+<SecondaryIPv6Dns></SecondaryIPv6Dns>
+<CurrentWifiUser>0</CurrentWifiUser>
+<TotalWifiUser>64</TotalWifiUser>
+<currenttotalwifiuser>64</currenttotalwifiuser>
+<ServiceStatus>2</ServiceStatus>
+<SimStatus>1</SimStatus>
+<WifiStatus>0</WifiStatus>
+<CurrentNetworkTypeEx>101</CurrentNetworkTypeEx>
+<maxsignal>5</maxsignal>
+<wifiindooronly>0</wifiindooronly>
+<wififrequence>0</wififrequence>
+<classify>cpe</classify>
+<flymode>0</flymode>
+<cellroam>1</cellroam>
+<ltecastatus>0</ltecastatus>
+/api/monitoring/traffic-statistics	GET	 	Traffic transferred	<CurrentConnectTime>243360</CurrentConnectTime>
+<CurrentUpload>244020</CurrentUpload>
+<CurrentDownload>1135754</CurrentDownload>
+<CurrentDownloadRate>0</CurrentDownloadRate>
+<CurrentUploadRate>0</CurrentUploadRate>
+<TotalUpload>90688300183</TotalUpload>
+<TotalDownload>250205129647</TotalDownload>
+<TotalConnectTime>10613008</TotalConnectTime>
+<showtraffic>1</showtraffic>
+/api/net/current-plmn	GET	 	Public Land Mobile Network information	<State>0</State>
+<FullName>DNA</FullName>
+<ShortName>DNA</ShortName>
+<Numeric>24412</Numeric>
+<Rat>7</Rat>
+/api/online-update/upgrade-messagebox	GET	 	 	<messagebox>1</messagebox>
+/api/pin/status	GET	 	Extended SIM information	<SimState>257</SimState>
+<PinOptState>258</PinOptState>
+<SimPinTimes>3</SimPinTimes>
+<SimPukTimes>10</SimPukTimes>
+/api/redirection/homepage	GET	 	 	<EnableRedirection>0</EnableRedirection>
+<Homepage></Homepage>
+/api/security/bridgemode	?	 	? Enable bridge-mode	 
+/api/security/upnp	GET, POST	 	Query or set Universal Plug and Play setting	<UpnpStatus>1</UpnpStatus>
+/api/sms/get-cbsnewslist	?	 	 	 
+/api/sms/sms-list	?	 	 	 
+/api/user/login	POST	 	Log in an admin-user	<Username>admin</Username>
+<Password>-password-hash-</Password>
+<password_type>4</password_type>
+/api/user/logout	POST	 	Log out an already logged in user	<Logout>1</Logout>
+/api/user/remind	GET	 	 	<remindstate>1</remindstate>
+/api/user/session	?	 	 	 
+/api/user/state-login	GET	 	
+State = -1 no logged in user
+Password type = 4 for SHA-256 hashed password with token
+
+<State>-1</State>
+<Username></Username>
+<password_type>4</password_type>
+/api/ussd/get	?	 	 	 
+/api/webserver/token	?	 	Get a new security token	 
+/api/wlan/basic-settings	GET	 	WiFi setup information	<WifiSsid>Huawei5186_2.4</WifiSsid>
+<WifiChannel>9</WifiChannel>
+<WifiHide>0</WifiHide>
+<WifiCountry>ALL</WifiCountry>
+<WifiMode>b&#x2F;g&#x2F;n</WifiMode>
+<WifiRate>0</WifiRate>
+<WifiTxPwrPcnt>100</WifiTxPwrPcnt>
+<WifiMaxAssoc>32</WifiMaxAssoc>
+<WifiEnable>1</WifiEnable>
+<WifiFrgThrshld>2346</WifiFrgThrshld>
+<WifiRtsThrshld>2347</WifiRtsThrshld>
+<WifiDtmIntvl>1</WifiDtmIntvl>
+<WifiBcnIntvl>100</WifiBcnIntvl>
+<WifiWme>1</WifiWme>
+<WifiPamode>0</WifiPamode>
+<WifiIsolate>0</WifiIsolate>
+<WifiProtectionmode>1</WifiProtectionmode>
+<Wifioffenable>1</Wifioffenable>
+<Wifiofftime>600</Wifiofftime>
+<wifibandwidth>0</wifibandwidth>
+<wifiautocountryswitch>0</wifiautocountryswitch>
+<WifiRestart>0</WifiRestart>
+/api/wlan/handover-setting	?	 	 	 
+/api/wlan/multi-security-settings	?	 	 	 
+/api/wlan/multi-switch-settings	GET	 	 	<multissidstatus>1</multissidstatus>
+/api/wlan/station-information	?	 	 	 
+/api/wlan/wifi-feature-switch	GET	 	WiFi features	<wifi5g_enabled>1</wifi5g_enabled>
+<wifiautocountry_enabled>0</wifiautocountry_enabled>
+<maxapnum>2</maxapnum>
+<isdoublechip>1</isdoublechip>
+<acmode_enable>1</acmode_enable>
+<stawpsenabled>0</stawpsenabled>
+<opennonewps_enable>1</opennonewps_enable>
+<stafrequenceenable>0</stafrequenceenable>
+<wifi24g_switch_enable>1</wifi24g_switch_enable>
+<wifi_dfs_enable>0</wifi_dfs_enable>
+/api/net/net-mode	GET, POST	 	Mode lock (2G/3G/4G), frequency lock. Bitmask with Huawei values.	<NetworkMode>03</NetworkMode>
+<NetworkBand>3FFFFFFF</NetworkBand>
+<LTEBand>800C5</LTEBand>
+ 	 	 	 	 
+All of the API-calls require a valid session cookie set to respond. Some commands require a logged in user for access, some don't. I won't be able to maintain this list, as I don't own an E5186, but I'll update this if I find something interesting.
+
+Later I will publish a tool to allow full bi-directional access.
