@@ -1,7 +1,5 @@
 # Huawei4GReboot
-A python script to reboot the Huawei 4G modem/router
-
-Huawei 4G Model reboot script using web API
+A python script to reboot the Huawei 4G modem/router using web API
 
 Tested on Huawei 4G homewifi model B310s-927
 
